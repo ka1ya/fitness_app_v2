@@ -33,7 +33,7 @@ class _CalculateFreqSportWidgetState extends State<CalculateFreqSportWidget> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            'How frequently do you do \nsports?',
+            'How frequently do you do sports?',
             textAlign: TextAlign.center,
             style: whiteTheme.textTheme.bodyMedium,
           ),
