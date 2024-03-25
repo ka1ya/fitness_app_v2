@@ -15,7 +15,7 @@ class MealPlanPage extends StatefulWidget {
 
 class _MealPlanPageState extends State<MealPlanPage> {
   late final ScrollController _scrollController;
-  List<String> days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+  List<String> days = ['S', 'M', 'T', 'W', 'T', 'F', "S"];
 
   //late List<Map<String, dynamic>> mealPlan = [];
 
@@ -26,12 +26,12 @@ class _MealPlanPageState extends State<MealPlanPage> {
 
   int _currentPageIndex = 0;
 
-  int _days = 1;
+  int _days = 0;
 
   @override
   void initState() {
     super.initState();
-    //BlocProvider.of<PlatyBloc>(context).add(MealPlanDataEvent([]));
+    BlocProvider.of<PlatyBloc>(context).add(MealPlanDataEvent([]));
     _scrollController = ScrollController();
     _scrollController.addListener(_onScroll);
   }
@@ -58,1246 +58,267 @@ class _MealPlanPageState extends State<MealPlanPage> {
     ]
   };
 
-  // Sample data
-  final List<Map<String, dynamic>> dataList = [
+  List<Map<String, dynamic>> dataList = [
     {
-      "day": 1,
       "meals": [
         {
-          "title": "Breakfast",
-          "meal_title": "DAY 1 DATA",
-          "meal_calories": "590 kcal",
           "details": [
             {
-              "name": "Duck",
-              "amount": "30 g",
-              "calories": "137",
-              "protein": "4 g",
-              "fat": "9 g",
-              "cholesterol": "0 mg",
-              "calcium": "177 mg"
+              "name": "Grilled Avocado and Spinach",
+              "amount": "200 g",
+              "calories": "240 kcal"
             },
-            {
-              "name": "Almond Milk (unsweetened)",
-              "amount": "200 ml",
-              "calories": "36",
-              "protein": "1 g",
-              "fat": "3 g",
-              "cholesterol": "0 mg",
-              "calcium": "79 mg"
-            },
-            {
-              "name": "Strawberries",
-              "amount": "100 g",
-              "calories": "32",
-              "protein": "1 g",
-              "fat": "0 g",
-              "cholesterol": "0 mg",
-              "calcium": "16 mg"
-            },
-            {
-              "name": "Whole Grain Oats",
-              "amount": "40 g",
-              "calories": "305",
-              "protein": "10 g",
-              "fat": "5 g",
-              "cholesterol": "0 mg",
-              "calcium": "52 mg"
-            }
-          ]
+            {"name": "Blackberries", "amount": "100 g", "calories": "43 kcal"},
+            {"name": "Grilled Tofu", "amount": "75 g", "calories": "117 kcal"}
+          ],
+          "mealType": "Breakfast",
+          "energyValue": "400 kcal"
         },
         {
-          "title": "Lunch",
-          "meal_title": "Chia Seed Pudding with Almond Milk",
-          "meal_calories": "590 kcal",
           "details": [
             {
-              "name": "Chia Seeds",
-              "amount": "30 g",
-              "calories": "137",
-              "protein": "4 g",
-              "fat": "9 g",
-              "cholesterol": "0 mg",
-              "calcium": "177 mg"
+              "name": "Grilled Mixed Vegetables",
+              "amount": "300 g",
+              "calories": "180 kcal"
             },
             {
-              "name": "Almond Milk (unsweetened)",
-              "amount": "200 ml",
-              "calories": "36",
-              "protein": "1 g",
-              "fat": "3 g",
-              "cholesterol": "0 mg",
-              "calcium": "79 mg"
-            },
-            {
-              "name": "Strawberries",
-              "amount": "100 g",
-              "calories": "32",
-              "protein": "1 g",
-              "fat": "0 g",
-              "cholesterol": "0 mg",
-              "calcium": "16 mg"
-            },
-            {
-              "name": "Whole Grain Oats",
-              "amount": "40 g",
-              "calories": "305",
-              "protein": "10 g",
-              "fat": "5 g",
-              "cholesterol": "0 mg",
-              "calcium": "52 mg"
+              "name": "Grilled Quinoa Stuffed Bell Peppers",
+              "amount": "250 g",
+              "calories": "320 kcal"
             }
-          ]
-        },
-        {
-          "title": "Dinner",
-          "meal_title": "Chia Seed Pudding with Almond Milk",
-          "meal_calories": "590 kcal",
-          "details": [
-            {
-              "name": "Chia Seeds",
-              "amount": "30 g",
-              "calories": "137",
-              "protein": "4 g",
-              "fat": "9 g",
-              "cholesterol": "0 mg",
-              "calcium": "177 mg"
-            },
-            {
-              "name": "Almond Milk (unsweetened)",
-              "amount": "200 ml",
-              "calories": "36",
-              "protein": "1 g",
-              "fat": "3 g",
-              "cholesterol": "0 mg",
-              "calcium": "79 mg"
-            },
-            {
-              "name": "Strawberries",
-              "amount": "100 g",
-              "calories": "32",
-              "protein": "1 g",
-              "fat": "0 g",
-              "cholesterol": "0 mg",
-              "calcium": "16 mg"
-            },
-            {
-              "name": "Whole Grain Oats",
-              "amount": "40 g",
-              "calories": "305",
-              "protein": "10 g",
-              "fat": "5 g",
-              "cholesterol": "0 mg",
-              "calcium": "52 mg"
-            }
-          ]
-        },
-        {
-          "title": "Snack",
-          "meal_title": "Chia Seed Pudding with Almond Milk",
-          "meal_calories": "590 kcal",
-          "details": [
-            {
-              "name": "Chia Seeds",
-              "amount": "30 g",
-              "calories": "137",
-              "protein": "4 g",
-              "fat": "9 g",
-              "cholesterol": "0 mg",
-              "calcium": "177 mg"
-            },
-            {
-              "name": "Almond Milk (unsweetened)",
-              "amount": "200 ml",
-              "calories": "36",
-              "protein": "1 g",
-              "fat": "3 g",
-              "cholesterol": "0 mg",
-              "calcium": "79 mg"
-            },
-            {
-              "name": "Strawberries",
-              "amount": "100 g",
-              "calories": "32",
-              "protein": "1 g",
-              "fat": "0 g",
-              "cholesterol": "0 mg",
-              "calcium": "16 mg"
-            },
-            {
-              "name": "Whole Grain Oats",
-              "amount": "40 g",
-              "calories": "305",
-              "protein": "10 g",
-              "fat": "5 g",
-              "cholesterol": "0 mg",
-              "calcium": "52 mg"
-            }
-          ]
+          ],
+          "mealType": "Dinner",
+          "energyValue": "500 kcal"
         }
-      ]
+      ],
+      "weekDay": "Sunday"
     },
     {
-      "day": 2,
       "meals": [
         {
-          "title": "Breakfast",
-          "meal_title": "DAY 2 DATA",
-          "meal_calories": "590 kcal",
           "details": [
             {
-              "name": "Duck",
-              "amount": "30 g",
-              "calories": "137",
-              "protein": "4 g",
-              "fat": "9 g",
-              "cholesterol": "0 mg",
-              "calcium": "177 mg"
+              "name": "Grilled Mushrooms",
+              "amount": "160 g",
+              "calories": "70 kcal"
             },
             {
-              "name": "Almond Milk (unsweetened)",
-              "amount": "200 ml",
-              "calories": "36",
-              "protein": "1 g",
-              "fat": "3 g",
-              "cholesterol": "0 mg",
-              "calcium": "79 mg"
+              "name": "Grilled Asparagus",
+              "amount": "150 g",
+              "calories": "90 kcal"
             },
             {
-              "name": "Strawberries",
-              "amount": "100 g",
-              "calories": "32",
-              "protein": "1 g",
-              "fat": "0 g",
-              "cholesterol": "0 mg",
-              "calcium": "16 mg"
+              "name": "Grilled Tomato",
+              "amount": "150 g",
+              "calories": "30 kcal"
             },
             {
-              "name": "Whole Grain Oats",
-              "amount": "40 g",
-              "calories": "305",
-              "protein": "10 g",
-              "fat": "5 g",
-              "cholesterol": "0 mg",
-              "calcium": "52 mg"
+              "name": "Grilled Soy Sausage",
+              "amount": "75 g",
+              "calories": "260 kcal"
             }
-          ]
+          ],
+          "mealType": "Breakfast",
+          "energyValue": "450 kcal"
         },
         {
-          "title": "Lunch",
-          "meal_title": "Chia Seed Pudding with Almond Milk",
-          "meal_calories": "590 kcal",
           "details": [
             {
-              "name": "Chia Seeds",
-              "amount": "30 g",
-              "calories": "137",
-              "protein": "4 g",
-              "fat": "9 g",
-              "cholesterol": "0 mg",
-              "calcium": "177 mg"
+              "name": "Grilled Corn and Black Bean Salad",
+              "amount": "300 g",
+              "calories": "360 kcal"
             },
             {
-              "name": "Almond Milk (unsweetened)",
-              "amount": "200 ml",
-              "calories": "36",
-              "protein": "1 g",
-              "fat": "3 g",
-              "cholesterol": "0 mg",
-              "calcium": "79 mg"
-            },
-            {
-              "name": "Strawberries",
+              "name": "Grilled Chickpeas",
               "amount": "100 g",
-              "calories": "32",
-              "protein": "1 g",
-              "fat": "0 g",
-              "cholesterol": "0 mg",
-              "calcium": "16 mg"
-            },
-            {
-              "name": "Whole Grain Oats",
-              "amount": "40 g",
-              "calories": "305",
-              "protein": "10 g",
-              "fat": "5 g",
-              "cholesterol": "0 mg",
-              "calcium": "52 mg"
+              "calories": "160 kcal"
             }
-          ]
-        },
-        {
-          "title": "Dinner",
-          "meal_title": "Chia Seed Pudding with Almond Milk",
-          "meal_calories": "590 kcal",
-          "details": [
-            {
-              "name": "Chia Seeds",
-              "amount": "30 g",
-              "calories": "137",
-              "protein": "4 g",
-              "fat": "9 g",
-              "cholesterol": "0 mg",
-              "calcium": "177 mg"
-            },
-            {
-              "name": "Almond Milk (unsweetened)",
-              "amount": "200 ml",
-              "calories": "36",
-              "protein": "1 g",
-              "fat": "3 g",
-              "cholesterol": "0 mg",
-              "calcium": "79 mg"
-            },
-            {
-              "name": "Strawberries",
-              "amount": "100 g",
-              "calories": "32",
-              "protein": "1 g",
-              "fat": "0 g",
-              "cholesterol": "0 mg",
-              "calcium": "16 mg"
-            },
-            {
-              "name": "Whole Grain Oats",
-              "amount": "40 g",
-              "calories": "305",
-              "protein": "10 g",
-              "fat": "5 g",
-              "cholesterol": "0 mg",
-              "calcium": "52 mg"
-            }
-          ]
-        },
-        {
-          "title": "Snack",
-          "meal_title": "Chia Seed Pudding with Almond Milkkkk",
-          "meal_calories": "590 kcal",
-          "details": [
-            {
-              "name": "Chia",
-              "amount": "30 g",
-              "calories": "137",
-              "protein": "4 g",
-              "fat": "9 g",
-              "cholesterol": "0 mg",
-              "calcium": "177 mg"
-            },
-            {
-              "name": "Almond Milk (unsweetened)",
-              "amount": "200 ml",
-              "calories": "36",
-              "protein": "1 g",
-              "fat": "3 g",
-              "cholesterol": "0 mg",
-              "calcium": "79 mg"
-            },
-            {
-              "name": "Strawberries",
-              "amount": "100 g",
-              "calories": "32",
-              "protein": "1 g",
-              "fat": "0 g",
-              "cholesterol": "0 mg",
-              "calcium": "16 mg"
-            },
-            {
-              "name": "Whole Grain Oats",
-              "amount": "40 g",
-              "calories": "305",
-              "protein": "10 g",
-              "fat": "5 g",
-              "cholesterol": "0 mg",
-              "calcium": "52 mg"
-            }
-          ]
+          ],
+          "mealType": "Dinner",
+          "energyValue": "520 kcal"
         }
-      ]
+      ],
+      "weekDay": "Monday"
     },
     {
-      "day": 3,
       "meals": [
         {
-          "title": "Breakfast",
-          "meal_title": "DAY 3 DATA",
-          "meal_calories": "590 kcal",
           "details": [
             {
-              "name": "Duck",
-              "amount": "30 g",
-              "calories": "137",
-              "protein": "4 g",
-              "fat": "9 g",
-              "cholesterol": "0 mg",
-              "calcium": "177 mg"
+              "name": "Grilled Tempeh and Kale Salad",
+              "amount": "300 g",
+              "calories": "300 kcal"
             },
             {
-              "name": "Almond Milk (unsweetened)",
-              "amount": "200 ml",
-              "calories": "36",
-              "protein": "1 g",
-              "fat": "3 g",
-              "cholesterol": "0 mg",
-              "calcium": "79 mg"
-            },
-            {
-              "name": "Strawberries",
-              "amount": "100 g",
-              "calories": "32",
-              "protein": "1 g",
-              "fat": "0 g",
-              "cholesterol": "0 mg",
-              "calcium": "16 mg"
-            },
-            {
-              "name": "Whole Grain Oats",
-              "amount": "40 g",
-              "calories": "305",
-              "protein": "10 g",
-              "fat": "5 g",
-              "cholesterol": "0 mg",
-              "calcium": "52 mg"
+              "name": "Grilled Berry Skewers",
+              "amount": "150 g",
+              "calories": "130 kcal"
             }
-          ]
+          ],
+          "mealType": "Breakfast",
+          "energyValue": "430 kcal"
         },
         {
-          "title": "Lunch",
-          "meal_title": "Chia Seed Pudding with Almond Milk",
-          "meal_calories": "590 kcal",
           "details": [
             {
-              "name": "Chia Seeds",
-              "amount": "30 g",
-              "calories": "137",
-              "protein": "4 g",
-              "fat": "9 g",
-              "cholesterol": "0 mg",
-              "calcium": "177 mg"
+              "name": "Grilled Falafel Patties",
+              "amount": "200 g",
+              "calories": "300 kcal"
             },
             {
-              "name": "Almond Milk (unsweetened)",
-              "amount": "200 ml",
-              "calories": "36",
-              "protein": "1 g",
-              "fat": "3 g",
-              "cholesterol": "0 mg",
-              "calcium": "79 mg"
-            },
-            {
-              "name": "Strawberries",
-              "amount": "100 g",
-              "calories": "32",
-              "protein": "1 g",
-              "fat": "0 g",
-              "cholesterol": "0 mg",
-              "calcium": "16 mg"
-            },
-            {
-              "name": "Whole Grain Oats",
-              "amount": "40 g",
-              "calories": "305",
-              "protein": "10 g",
-              "fat": "5 g",
-              "cholesterol": "0 mg",
-              "calcium": "52 mg"
+              "name": "Grilled Lentil Stuffed Bell Pepper",
+              "amount": "250 g",
+              "calories": "200 kcal"
             }
-          ]
-        },
-        {
-          "title": "Dinner",
-          "meal_title": "Chia Seed Pudding with Almond Milk",
-          "meal_calories": "590 kcal",
-          "details": [
-            {
-              "name": "Chia Seeds",
-              "amount": "30 g",
-              "calories": "137",
-              "protein": "4 g",
-              "fat": "9 g",
-              "cholesterol": "0 mg",
-              "calcium": "177 mg"
-            },
-            {
-              "name": "Almond Milk (unsweetened)",
-              "amount": "200 ml",
-              "calories": "36",
-              "protein": "1 g",
-              "fat": "3 g",
-              "cholesterol": "0 mg",
-              "calcium": "79 mg"
-            },
-            {
-              "name": "Strawberries",
-              "amount": "100 g",
-              "calories": "32",
-              "protein": "1 g",
-              "fat": "0 g",
-              "cholesterol": "0 mg",
-              "calcium": "16 mg"
-            },
-            {
-              "name": "Whole Grain Oats",
-              "amount": "40 g",
-              "calories": "305",
-              "protein": "10 g",
-              "fat": "5 g",
-              "cholesterol": "0 mg",
-              "calcium": "52 mg"
-            }
-          ]
-        },
-        {
-          "title": "Snack",
-          "meal_title": "Chia Seed Pudding with Almond Milkkkk",
-          "meal_calories": "590 kcal",
-          "details": [
-            {
-              "name": "Chia",
-              "amount": "30 g",
-              "calories": "137",
-              "protein": "4 g",
-              "fat": "9 g",
-              "cholesterol": "0 mg",
-              "calcium": "177 mg"
-            },
-            {
-              "name": "Almond Milk (unsweetened)",
-              "amount": "200 ml",
-              "calories": "36",
-              "protein": "1 g",
-              "fat": "3 g",
-              "cholesterol": "0 mg",
-              "calcium": "79 mg"
-            },
-            {
-              "name": "Strawberries",
-              "amount": "100 g",
-              "calories": "32",
-              "protein": "1 g",
-              "fat": "0 g",
-              "cholesterol": "0 mg",
-              "calcium": "16 mg"
-            },
-            {
-              "name": "Whole Grain Oats",
-              "amount": "40 g",
-              "calories": "305",
-              "protein": "10 g",
-              "fat": "5 g",
-              "cholesterol": "0 mg",
-              "calcium": "52 mg"
-            }
-          ]
+          ],
+          "mealType": "Dinner",
+          "energyValue": "500 kcal"
         }
-      ]
+      ],
+      "weekDay": "Tuesday"
     },
     {
-      "day": 4,
       "meals": [
         {
-          "title": "Breakfast",
-          "meal_title": "DAY 4 DATA",
-          "meal_calories": "590 kcal",
           "details": [
+            {"amount": "200 g", "calories": "90 kcal"},
             {
-              "name": "Duck",
-              "amount": "30 g",
-              "calories": "137",
-              "protein": "4 g",
-              "fat": "9 g",
-              "cholesterol": "0 mg",
-              "calcium": "177 mg"
-            },
-            {
-              "name": "Almond Milk (unsweetened)",
-              "amount": "200 ml",
-              "calories": "36",
-              "protein": "1 g",
-              "fat": "3 g",
-              "cholesterol": "0 mg",
-              "calcium": "79 mg"
-            },
-            {
-              "name": "Strawberries",
-              "amount": "100 g",
-              "calories": "32",
-              "protein": "1 g",
-              "fat": "0 g",
-              "cholesterol": "0 mg",
-              "calcium": "16 mg"
-            },
-            {
-              "name": "Whole Grain Oats",
-              "amount": "40 g",
-              "calories": "305",
-              "protein": "10 g",
-              "fat": "5 g",
-              "cholesterol": "0 mg",
-              "calcium": "52 mg"
+              "name": "Grilled Tofu Scramble",
+              "amount": "250 g",
+              "calories": "310 kcal"
             }
-          ]
+          ],
+          "mealType": "Breakfast",
+          "energyValue": "400 kcal"
         },
         {
-          "title": "Lunch",
-          "meal_title": "Chia Seed Pudding with Almond Milk",
-          "meal_calories": "590 kcal",
           "details": [
             {
-              "name": "Chia Seeds",
-              "amount": "30 g",
-              "calories": "137",
-              "protein": "4 g",
-              "fat": "9 g",
-              "cholesterol": "0 mg",
-              "calcium": "177 mg"
+              "name": "Grilled Brussels Sprouts",
+              "amount": "200 g",
+              "calories": "160 kcal"
             },
             {
-              "name": "Almond Milk (unsweetened)",
-              "amount": "200 ml",
-              "calories": "36",
-              "protein": "1 g",
-              "fat": "3 g",
-              "cholesterol": "0 mg",
-              "calcium": "79 mg"
-            },
-            {
-              "name": "Strawberries",
-              "amount": "100 g",
-              "calories": "32",
-              "protein": "1 g",
-              "fat": "0 g",
-              "cholesterol": "0 mg",
-              "calcium": "16 mg"
-            },
-            {
-              "name": "Whole Grain Oats",
-              "amount": "40 g",
-              "calories": "305",
-              "protein": "10 g",
-              "fat": "5 g",
-              "cholesterol": "0 mg",
-              "calcium": "52 mg"
+              "name": "Grilled Seitan Steak",
+              "amount": "250 g",
+              "calories": "340 kcal"
             }
-          ]
-        },
-        {
-          "title": "Dinner",
-          "meal_title": "Chia Seed Pudding with Almond Milk",
-          "meal_calories": "590 kcal",
-          "details": [
-            {
-              "name": "Chia Seeds",
-              "amount": "30 g",
-              "calories": "137",
-              "protein": "4 g",
-              "fat": "9 g",
-              "cholesterol": "0 mg",
-              "calcium": "177 mg"
-            },
-            {
-              "name": "Almond Milk (unsweetened)",
-              "amount": "200 ml",
-              "calories": "36",
-              "protein": "1 g",
-              "fat": "3 g",
-              "cholesterol": "0 mg",
-              "calcium": "79 mg"
-            },
-            {
-              "name": "Strawberries",
-              "amount": "100 g",
-              "calories": "32",
-              "protein": "1 g",
-              "fat": "0 g",
-              "cholesterol": "0 mg",
-              "calcium": "16 mg"
-            },
-            {
-              "name": "Whole Grain Oats",
-              "amount": "40 g",
-              "calories": "305",
-              "protein": "10 g",
-              "fat": "5 g",
-              "cholesterol": "0 mg",
-              "calcium": "52 mg"
-            }
-          ]
-        },
-        {
-          "title": "Snack",
-          "meal_title": "Chia Seed Pudding with Almond Milkkkk",
-          "meal_calories": "590 kcal",
-          "details": [
-            {
-              "name": "Chia",
-              "amount": "30 g",
-              "calories": "137",
-              "protein": "4 g",
-              "fat": "9 g",
-              "cholesterol": "0 mg",
-              "calcium": "177 mg"
-            },
-            {
-              "name": "Almond Milk (unsweetened)",
-              "amount": "200 ml",
-              "calories": "36",
-              "protein": "1 g",
-              "fat": "3 g",
-              "cholesterol": "0 mg",
-              "calcium": "79 mg"
-            },
-            {
-              "name": "Strawberries",
-              "amount": "100 g",
-              "calories": "32",
-              "protein": "1 g",
-              "fat": "0 g",
-              "cholesterol": "0 mg",
-              "calcium": "16 mg"
-            },
-            {
-              "name": "Whole Grain Oats",
-              "amount": "40 g",
-              "calories": "305",
-              "protein": "10 g",
-              "fat": "5 g",
-              "cholesterol": "0 mg",
-              "calcium": "52 mg"
-            }
-          ]
+          ],
+          "mealType": "Dinner",
+          "energyValue": "500 kcal"
         }
-      ]
+      ],
+      "weekDay": "Wednesday"
     },
     {
-      "day": 5,
       "meals": [
         {
-          "title": "Breakfast",
-          "meal_title": "DAY 5 DATA",
-          "meal_calories": "590 kcal",
           "details": [
             {
-              "name": "Duck",
-              "amount": "30 g",
-              "calories": "137",
-              "protein": "4 g",
-              "fat": "9 g",
-              "cholesterol": "0 mg",
-              "calcium": "177 mg"
+              "name": "Grilled Veggie Hash",
+              "amount": "300 g",
+              "calories": "220 kcal"
             },
             {
-              "name": "Almond Milk (unsweetened)",
-              "amount": "200 ml",
-              "calories": "36",
-              "protein": "1 g",
-              "fat": "3 g",
-              "cholesterol": "0 mg",
-              "calcium": "79 mg"
-            },
-            {
-              "name": "Strawberries",
-              "amount": "100 g",
-              "calories": "32",
-              "protein": "1 g",
-              "fat": "0 g",
-              "cholesterol": "0 mg",
-              "calcium": "16 mg"
-            },
-            {
-              "name": "Whole Grain Oats",
-              "amount": "40 g",
-              "calories": "305",
-              "protein": "10 g",
-              "fat": "5 g",
-              "cholesterol": "0 mg",
-              "calcium": "52 mg"
+              "name": "Grilled Pineapple",
+              "amount": "200 g",
+              "calories": "190 kcal"
             }
-          ]
+          ],
+          "mealType": "Breakfast",
+          "energyValue": "410 kcal"
         },
         {
-          "title": "Lunch",
-          "meal_title": "Chia Seed Pudding with Almond Milk",
-          "meal_calories": "590 kcal",
           "details": [
             {
-              "name": "Chia Seeds",
-              "amount": "30 g",
-              "calories": "137",
-              "protein": "4 g",
-              "fat": "9 g",
-              "cholesterol": "0 mg",
-              "calcium": "177 mg"
+              "name": "Grilled Zucchini and Eggplant",
+              "amount": "250 g",
+              "calories": "160 kcal"
             },
             {
-              "name": "Almond Milk (unsweetened)",
-              "amount": "200 ml",
-              "calories": "36",
-              "protein": "1 g",
-              "fat": "3 g",
-              "cholesterol": "0 mg",
-              "calcium": "79 mg"
-            },
-            {
-              "name": "Strawberries",
-              "amount": "100 g",
-              "calories": "32",
-              "protein": "1 g",
-              "fat": "0 g",
-              "cholesterol": "0 mg",
-              "calcium": "16 mg"
-            },
-            {
-              "name": "Whole Grain Oats",
-              "amount": "40 g",
-              "calories": "305",
-              "protein": "10 g",
-              "fat": "5 g",
-              "cholesterol": "0 mg",
-              "calcium": "52 mg"
+              "name": "Grilled Portobello Mushroom Burger",
+              "amount": "250 g",
+              "calories": "350 kcal"
             }
-          ]
-        },
-        {
-          "title": "Dinner",
-          "meal_title": "Chia Seed Pudding with Almond Milk",
-          "meal_calories": "590 kcal",
-          "details": [
-            {
-              "name": "Chia Seeds",
-              "amount": "30 g",
-              "calories": "137",
-              "protein": "4 g",
-              "fat": "9 g",
-              "cholesterol": "0 mg",
-              "calcium": "177 mg"
-            },
-            {
-              "name": "Almond Milk (unsweetened)",
-              "amount": "200 ml",
-              "calories": "36",
-              "protein": "1 g",
-              "fat": "3 g",
-              "cholesterol": "0 mg",
-              "calcium": "79 mg"
-            },
-            {
-              "name": "Strawberries",
-              "amount": "100 g",
-              "calories": "32",
-              "protein": "1 g",
-              "fat": "0 g",
-              "cholesterol": "0 mg",
-              "calcium": "16 mg"
-            },
-            {
-              "name": "Whole Grain Oats",
-              "amount": "40 g",
-              "calories": "305",
-              "protein": "10 g",
-              "fat": "5 g",
-              "cholesterol": "0 mg",
-              "calcium": "52 mg"
-            }
-          ]
-        },
-        {
-          "title": "Snack",
-          "meal_title": "Chia Seed Pudding with Almond Milkkkk",
-          "meal_calories": "590 kcal",
-          "details": [
-            {
-              "name": "Chia",
-              "amount": "30 g",
-              "calories": "137",
-              "protein": "4 g",
-              "fat": "9 g",
-              "cholesterol": "0 mg",
-              "calcium": "177 mg"
-            },
-            {
-              "name": "Almond Milk (unsweetened)",
-              "amount": "200 ml",
-              "calories": "36",
-              "protein": "1 g",
-              "fat": "3 g",
-              "cholesterol": "0 mg",
-              "calcium": "79 mg"
-            },
-            {
-              "name": "Strawberries",
-              "amount": "100 g",
-              "calories": "32",
-              "protein": "1 g",
-              "fat": "0 g",
-              "cholesterol": "0 mg",
-              "calcium": "16 mg"
-            },
-            {
-              "name": "Whole Grain Oats",
-              "amount": "40 g",
-              "calories": "305",
-              "protein": "10 g",
-              "fat": "5 g",
-              "cholesterol": "0 mg",
-              "calcium": "52 mg"
-            }
-          ]
+          ],
+          "mealType": "Dinner",
+          "energyValue": "510 kcal"
         }
-      ]
+      ],
+      "weekDay": "Thursday"
     },
     {
-      "day": 6,
       "meals": [
         {
-          "title": "Breakfast",
-          "meal_title": "DAY 6 DATA",
-          "meal_calories": "590 kcal",
           "details": [
             {
-              "name": "Duck",
-              "amount": "30 g",
-              "calories": "137",
-              "protein": "4 g",
-              "fat": "9 g",
-              "cholesterol": "0 mg",
-              "calcium": "177 mg"
+              "name": "Grilled Veggie Scramble",
+              "amount": "250 g",
+              "calories": "220 kcal"
             },
             {
-              "name": "Almond Milk (unsweetened)",
-              "amount": "200 ml",
-              "calories": "36",
-              "protein": "1 g",
-              "fat": "3 g",
-              "cholesterol": "0 mg",
-              "calcium": "79 mg"
-            },
-            {
-              "name": "Strawberries",
-              "amount": "100 g",
-              "calories": "32",
-              "protein": "1 g",
-              "fat": "0 g",
-              "cholesterol": "0 mg",
-              "calcium": "16 mg"
-            },
-            {
-              "name": "Whole Grain Oats",
-              "amount": "40 g",
-              "calories": "305",
-              "protein": "10 g",
-              "fat": "5 g",
-              "cholesterol": "0 mg",
-              "calcium": "52 mg"
+              "name": "Grilled Baby Potatoes",
+              "amount": "200 g",
+              "calories": "180 kcal"
             }
-          ]
+          ],
+          "mealType": "Breakfast",
+          "energyValue": "400 kcal"
         },
         {
-          "title": "Lunch",
-          "meal_title": "Chia Seed Pudding with Almond Milk",
-          "meal_calories": "590 kcal",
           "details": [
             {
-              "name": "Chia Seeds",
-              "amount": "30 g",
-              "calories": "137",
-              "protein": "4 g",
-              "fat": "9 g",
-              "cholesterol": "0 mg",
-              "calcium": "177 mg"
+              "name": "Grilled Lentil and Veggies Skewers",
+              "amount": "300 g",
+              "calories": "300 kcal"
             },
             {
-              "name": "Almond Milk (unsweetened)",
-              "amount": "200 ml",
-              "calories": "36",
-              "protein": "1 g",
-              "fat": "3 g",
-              "cholesterol": "0 mg",
-              "calcium": "79 mg"
-            },
-            {
-              "name": "Strawberries",
-              "amount": "100 g",
-              "calories": "32",
-              "protein": "1 g",
-              "fat": "0 g",
-              "cholesterol": "0 mg",
-              "calcium": "16 mg"
-            },
-            {
-              "name": "Whole Grain Oats",
-              "amount": "40 g",
-              "calories": "305",
-              "protein": "10 g",
-              "fat": "5 g",
-              "cholesterol": "0 mg",
-              "calcium": "52 mg"
+              "name": "Grilled Squash",
+              "amount": "200 g",
+              "calories": "200 kcal"
             }
-          ]
-        },
-        {
-          "title": "Dinner",
-          "meal_title": "Chia Seed Pudding with Almond Milk",
-          "meal_calories": "590 kcal",
-          "details": [
-            {
-              "name": "Chia Seeds",
-              "amount": "30 g",
-              "calories": "137",
-              "protein": "4 g",
-              "fat": "9 g",
-              "cholesterol": "0 mg",
-              "calcium": "177 mg"
-            },
-            {
-              "name": "Almond Milk (unsweetened)",
-              "amount": "200 ml",
-              "calories": "36",
-              "protein": "1 g",
-              "fat": "3 g",
-              "cholesterol": "0 mg",
-              "calcium": "79 mg"
-            },
-            {
-              "name": "Strawberries",
-              "amount": "100 g",
-              "calories": "32",
-              "protein": "1 g",
-              "fat": "0 g",
-              "cholesterol": "0 mg",
-              "calcium": "16 mg"
-            },
-            {
-              "name": "Whole Grain Oats",
-              "amount": "40 g",
-              "calories": "305",
-              "protein": "10 g",
-              "fat": "5 g",
-              "cholesterol": "0 mg",
-              "calcium": "52 mg"
-            }
-          ]
-        },
-        {
-          "title": "Snack",
-          "meal_title": "Chia Seed Pudding with Almond Milkkkk",
-          "meal_calories": "590 kcal",
-          "details": [
-            {
-              "name": "Chia",
-              "amount": "30 g",
-              "calories": "137",
-              "protein": "4 g",
-              "fat": "9 g",
-              "cholesterol": "0 mg",
-              "calcium": "177 mg"
-            },
-            {
-              "name": "Almond Milk (unsweetened)",
-              "amount": "200 ml",
-              "calories": "36",
-              "protein": "1 g",
-              "fat": "3 g",
-              "cholesterol": "0 mg",
-              "calcium": "79 mg"
-            },
-            {
-              "name": "Strawberries",
-              "amount": "100 g",
-              "calories": "32",
-              "protein": "1 g",
-              "fat": "0 g",
-              "cholesterol": "0 mg",
-              "calcium": "16 mg"
-            },
-            {
-              "name": "Whole Grain Oats",
-              "amount": "40 g",
-              "calories": "305",
-              "protein": "10 g",
-              "fat": "5 g",
-              "cholesterol": "0 mg",
-              "calcium": "52 mg"
-            }
-          ]
+          ],
+          "mealType": "Dinner",
+          "energyValue": "500 kcal"
         }
-      ]
+      ],
+      "weekDay": "Friday"
     },
     {
-      "day": 7,
       "meals": [
         {
-          "title": "Breakfast",
-          "meal_title": "DAY 7 DATA",
-          "meal_calories": "590 kcal",
           "details": [
             {
-              "name": "Duck",
-              "amount": "30 g",
-              "calories": "137",
-              "protein": "4 g",
-              "fat": "9 g",
-              "cholesterol": "0 mg",
-              "calcium": "177 mg"
+              "name": "Grilled Banana and Blueberries",
+              "amount": "200 g",
+              "calories": "170 kcal"
             },
             {
-              "name": "Almond Milk (unsweetened)",
-              "amount": "200 ml",
-              "calories": "36",
-              "protein": "1 g",
-              "fat": "3 g",
-              "cholesterol": "0 mg",
-              "calcium": "79 mg"
-            },
-            {
-              "name": "Strawberries",
-              "amount": "100 g",
-              "calories": "32",
-              "protein": "1 g",
-              "fat": "0 g",
-              "cholesterol": "0 mg",
-              "calcium": "16 mg"
-            },
-            {
-              "name": "Whole Grain Oats",
-              "amount": "40 g",
-              "calories": "305",
-              "protein": "10 g",
-              "fat": "5 g",
-              "cholesterol": "0 mg",
-              "calcium": "52 mg"
+              "name": "Grilled Vegan Sausage",
+              "amount": "150 g",
+              "calories": "250 kcal"
             }
-          ]
+          ],
+          "mealType": "Breakfast",
+          "energyValue": "420 kcal"
         },
         {
-          "title": "Lunch",
-          "meal_title": "Chia Seed Pudding with Almond Milk",
-          "meal_calories": "590 kcal",
           "details": [
             {
-              "name": "Chia Seeds",
-              "amount": "30 g",
-              "calories": "137",
-              "protein": "4 g",
-              "fat": "9 g",
-              "cholesterol": "0 mg",
-              "calcium": "177 mg"
+              "name": "Grilled Caramelized Onion and Mushroom Sandwich",
+              "amount": "300 g"
             },
             {
-              "name": "Almond Milk (unsweetened)",
-              "amount": "200 ml",
-              "calories": "36",
-              "protein": "1 g",
-              "fat": "3 g",
-              "cholesterol": "0 mg",
-              "calcium": "79 mg"
-            },
-            {
-              "name": "Strawberries",
-              "amount": "100 g",
-              "calories": "32",
-              "protein": "1 g",
-              "fat": "0 g",
-              "cholesterol": "0 mg",
-              "calcium": "16 mg"
-            },
-            {
-              "name": "Whole Grain Oats",
-              "amount": "40 g",
-              "calories": "305",
-              "protein": "10 g",
-              "fat": "5 g",
-              "cholesterol": "0 mg",
-              "calcium": "52 mg"
+              "name": "Grilled Sweet Potato",
+              "amount": "200 g",
+              "calories": "200 kcal"
             }
-          ]
-        },
-        {
-          "title": "Dinner",
-          "meal_title": "Chia Seed Pudding with Almond Milk",
-          "meal_calories": "590 kcal",
-          "details": [
-            {
-              "name": "Chia Seeds",
-              "amount": "30 g",
-              "calories": "137",
-              "protein": "4 g",
-              "fat": "9 g",
-              "cholesterol": "0 mg",
-              "calcium": "177 mg"
-            },
-            {
-              "name": "Almond Milk (unsweetened)",
-              "amount": "200 ml",
-              "calories": "36",
-              "protein": "1 g",
-              "fat": "3 g",
-              "cholesterol": "0 mg",
-              "calcium": "79 mg"
-            },
-            {
-              "name": "Strawberries",
-              "amount": "100 g",
-              "calories": "32",
-              "protein": "1 g",
-              "fat": "0 g",
-              "cholesterol": "0 mg",
-              "calcium": "16 mg"
-            },
-            {
-              "name": "Whole Grain Oats",
-              "amount": "40 g",
-              "calories": "305",
-              "protein": "10 g",
-              "fat": "5 g",
-              "cholesterol": "0 mg",
-              "calcium": "52 mg"
-            }
-          ]
-        },
-        {
-          "title": "Snack",
-          "meal_title": "Chia Seed Pudding with Almond Milkkkk",
-          "meal_calories": "590 kcal",
-          "details": [
-            {
-              "name": "Chia",
-              "amount": "30 g",
-              "calories": "137",
-              "protein": "4 g",
-              "fat": "9 g",
-              "cholesterol": "0 mg",
-              "calcium": "177 mg"
-            },
-            {
-              "name": "Almond Milk (unsweetened)",
-              "amount": "200 ml",
-              "calories": "36",
-              "protein": "1 g",
-              "fat": "3 g",
-              "cholesterol": "0 mg",
-              "calcium": "79 mg"
-            },
-            {
-              "name": "Strawberries",
-              "amount": "100 g",
-              "calories": "32",
-              "protein": "1 g",
-              "fat": "0 g",
-              "cholesterol": "0 mg",
-              "calcium": "16 mg"
-            },
-            {
-              "name": "Whole Grain Oats",
-              "amount": "40 g",
-              "calories": "305",
-              "protein": "10 g",
-              "fat": "5 g",
-              "cholesterol": "0 mg",
-              "calcium": "52 mg"
-            }
-          ]
+          ],
+          "mealType": "Dinner",
+          "energyValue": "520 kcal"
         }
-      ]
+      ],
+      "weekDay": "Saturday"
     }
   ];
 
@@ -1355,7 +376,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
 
   void _incrementDays() {
     setState(() {
-      if (_days < 7) {
+      if (_days < 6) {
         _days++;
         _resetDetailsVisibility();
       }
@@ -1364,7 +385,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
 
   void _decrementDays() {
     setState(() {
-      if (_days > 1) {
+      if (_days > 0) {
         _days--;
         _resetDetailsVisibility();
       }
@@ -1423,8 +444,9 @@ class _MealPlanPageState extends State<MealPlanPage> {
       body: BlocBuilder<PlatyBloc, PlatyBlocState>(
         builder: (context, state) {
           if (state is MealPlanDataState) {
-            //Map<String, dynamic> profileData = state.profilePageData;
-            //emailText = profileData['user_email'];
+            List<Map<String, dynamic>> dataFromJson = state.successMessage;
+            print(dataFromJson.length);
+            dataList = dataFromJson;
           }
           return Stack(children: [
             Positioned.fill(
@@ -1607,7 +629,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: List.generate(days.length, (index) {
                               final int dayNumber =
-                                  index + 1; // Adjust the day number
+                                  index; // Adjust the day number
                               return GestureDetector(
                                 onTap: () {
                                   setState(() {
@@ -1656,7 +678,8 @@ class _MealPlanPageState extends State<MealPlanPage> {
                                       ),
                                     ),
                                     Text(
-                                      (dayNumber).toString(), // show it here
+                                      (dayNumber + 1)
+                                          .toString(), // show it here
                                       style: const TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w300,
@@ -1685,7 +708,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
                               Row(
                                 children: [
                                   Text(
-                                    '$_days',
+                                    '${_days + 1}',
                                     style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500,
@@ -1724,38 +747,45 @@ class _MealPlanPageState extends State<MealPlanPage> {
                           const SizedBox(height: 20),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: dataList.map<Widget>((data) {
-                              if (data['day'] == _days) {
-                                // Display containers for the selected day
-                                return Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 10.0),
-                                      child: Column(
-                                        children:
-                                            data['meals'].map<Widget>((meal) {
-                                          return Column(
-                                            children: [
-                                              const SizedBox(
-                                                height: 10,
-                                              ),
-                                              Container(
+                            children: dataList.isNotEmpty
+                                ? (dataList[_days]['meals'] as List<dynamic>)
+                                    .map<Widget>((meal) {
+                                    if (meal.containsKey('details') &&
+                                        meal.containsKey('mealType')) {
+                                      List<dynamic> details = meal['details'];
+                                      String? mealType = meal['mealType'];
+                                      String? energyValue = meal['energyValue'];
+
+                                      return Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          if (mealType != null &&
+                                              energyValue != null)
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  bottom: 15.0),
+                                              child: Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.90,
                                                 decoration: BoxDecoration(
                                                   color: Colors.white,
                                                   border: Border.all(
                                                       color: Colors.white),
                                                   borderRadius:
                                                       BorderRadius.circular(
-                                                          24.0),
+                                                          20.0),
                                                 ),
-                                                child: Column(
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 20.0),
-                                                      child: Row(
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(
+                                                      10.0),
+                                                  child: Column(
+                                                    children: [
+                                                      Row(
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
                                                                 .spaceBetween,
@@ -1766,145 +796,137 @@ class _MealPlanPageState extends State<MealPlanPage> {
                                                                     .start,
                                                             children: [
                                                               Text(
-                                                                meal['title'],
+                                                                '$mealType',
                                                                 style:
                                                                     const TextStyle(
                                                                   fontSize: 17,
                                                                   fontWeight:
                                                                       FontWeight
-                                                                          .w600,
+                                                                          .w500,
                                                                 ),
                                                               ),
-                                                              Container(
-                                                                width: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .width *
-                                                                    0.50,
-                                                                child: Text(
-                                                                  meal[
-                                                                      'meal_title'],
-                                                                  style:
-                                                                      const TextStyle(
+                                                              Text(
+                                                                '$energyValue',
+                                                                style: const TextStyle(
                                                                     fontSize:
                                                                         13,
                                                                     fontWeight:
                                                                         FontWeight
-                                                                            .w400,
-                                                                  ),
-                                                                ),
+                                                                            .w500,
+                                                                    color: Colors
+                                                                        .grey),
                                                               ),
                                                             ],
                                                           ),
                                                           Image.asset(
                                                             _getImagePathForTitle(
-                                                                meal['title']),
+                                                                mealType),
                                                             width: 130,
                                                             height: 130,
                                                           ),
                                                         ],
                                                       ),
-                                                    ),
-                                                    Visibility(
-                                                      visible: meal['title'] ==
-                                                              'Breakfast'
-                                                          ? !_showDetails
-                                                          : meal['title'] ==
-                                                                  'Lunch'
-                                                              ? !_showDetails2
-                                                              : meal['title'] ==
-                                                                      'Dinner'
-                                                                  ? !_showDetails3
-                                                                  : meal['title'] ==
-                                                                          'Snack'
-                                                                      ? !_showDetails4
-                                                                      : false,
-                                                      child: GestureDetector(
-                                                        onTap: () {
-                                                          setState(() {
-                                                            _toggleDetailsForTitle(
-                                                                meal['title']);
-                                                          });
-                                                        },
-                                                        child: Center(
-                                                          child: Icon(
-                                                            _getIconForTitle(
-                                                                meal['title'],
-                                                                meal[
-                                                                    'details']),
-                                                            size: 30,
+                                                      Visibility(
+                                                        visible: mealType ==
+                                                                'Breakfast'
+                                                            ? !_showDetails
+                                                            : mealType ==
+                                                                    'Lunch'
+                                                                ? !_showDetails2
+                                                                : mealType ==
+                                                                        'Dinner'
+                                                                    ? !_showDetails3
+                                                                    : mealType ==
+                                                                            'Snack'
+                                                                        ? !_showDetails4
+                                                                        : false,
+                                                        child: GestureDetector(
+                                                          onTap: () {
+                                                            setState(() {
+                                                              _toggleDetailsForTitle(
+                                                                  mealType);
+                                                            });
+                                                          },
+                                                          child: const Center(
+                                                            child: Icon(
+                                                              Icons
+                                                                  .keyboard_arrow_down,
+                                                              size: 30,
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
-                                                    ),
-                                                    if (_shouldShowDetails(
-                                                        meal['title']))
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(
-                                                          right: 16.0,
-                                                          bottom: 2.0,
-                                                          left: 16.0,
-                                                        ),
+                                                      Visibility(
+                                                        visible: mealType ==
+                                                                'Breakfast'
+                                                            ? _showDetails
+                                                            : mealType ==
+                                                                    'Lunch'
+                                                                ? _showDetails2
+                                                                : mealType ==
+                                                                        'Dinner'
+                                                                    ? _showDetails3
+                                                                    : mealType ==
+                                                                            'Snack'
+                                                                        ? _showDetails4
+                                                                        : false,
                                                         child: Column(
                                                           children: [
-                                                            ...meal['details']
+                                                            ...details
                                                                 .map<Widget>(
                                                                     (detail) {
-                                                              return Column(
-                                                                children: [
-                                                                  const Divider(),
-                                                                  InkWell(
-                                                                    onTap: () {
-                                                                      setState(
-                                                                          () {
-                                                                        _currentPageIndex =
-                                                                            0;
-                                                                      });
-                                                                      _showModalBottomSheet(
-                                                                        context,
-                                                                        detail[
-                                                                            'name'],
-                                                                        detail[
-                                                                            'amount'],
-                                                                        detail[
-                                                                            'calories'],
-                                                                        detail[
-                                                                            'protein'],
-                                                                        detail[
-                                                                            'fat'],
-                                                                        detail[
-                                                                            'cholesterol'],
-                                                                        detail[
-                                                                            'calcium'],
-                                                                      );
-                                                                    },
+                                                              String? name =
+                                                                  detail[
+                                                                      'name'];
+                                                              String? amount =
+                                                                  detail[
+                                                                      'amount'];
+                                                              String? calories =
+                                                                  detail[
+                                                                      'calories'];
+
+                                                              if (name !=
+                                                                  null) {
+                                                                return Visibility(
+                                                                  visible: true,
+                                                                  child:
+                                                                      GestureDetector(
+                                                                    onTap:
+                                                                        () {},
                                                                     child: Row(
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .spaceBetween,
                                                                       children: [
-                                                                        Column(
-                                                                          crossAxisAlignment:
-                                                                              CrossAxisAlignment.start,
-                                                                          children: [
-                                                                            Text(
-                                                                              detail['name'],
-                                                                              style: const TextStyle(
-                                                                                fontSize: 16,
-                                                                                fontWeight: FontWeight.w400,
-                                                                              ),
+                                                                        Padding(
+                                                                          padding: const EdgeInsets
+                                                                              .only(
+                                                                              top: 8.0,
+                                                                              right: 25.0,
+                                                                              bottom: 15.0),
+                                                                          child:
+                                                                              Container(
+                                                                            width:
+                                                                                MediaQuery.of(context).size.width * 0.63,
+                                                                            child:
+                                                                                Column(
+                                                                              mainAxisAlignment: MainAxisAlignment.start,
+                                                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                                                              children: [
+                                                                                ListTile(
+                                                                                  horizontalTitleGap: 0,
+                                                                                  subtitle: Text(
+                                                                                    '$amount',
+                                                                                    style: const TextStyle(
+                                                                                      fontSize: 12,
+                                                                                      fontWeight: FontWeight.w400,
+                                                                                    ),
+                                                                                  ),
+                                                                                  title: Text(
+                                                                                    name,
+                                                                                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w400, height: 1.1),
+                                                                                  ),
+                                                                                ),
+                                                                              ],
                                                                             ),
-                                                                            Text(
-                                                                              detail['amount'],
-                                                                              style: const TextStyle(
-                                                                                fontSize: 12,
-                                                                                fontWeight: FontWeight.w400,
-                                                                                color: Colors.grey,
-                                                                              ),
-                                                                            ),
-                                                                          ],
+                                                                          ),
                                                                         ),
                                                                         Container(
                                                                           width:
@@ -1929,80 +951,87 @@ class _MealPlanPageState extends State<MealPlanPage> {
                                                                               ],
                                                                             ),
                                                                           ),
-                                                                          padding: const EdgeInsets
-                                                                              .all(
-                                                                              8),
                                                                           child:
-                                                                              const Center(
-                                                                            child:
-                                                                                Column(
-                                                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                                                              children: [
-                                                                                Text(
-                                                                                  '283',
-                                                                                  style: TextStyle(
-                                                                                    fontSize: 12,
-                                                                                    fontWeight: FontWeight.w400,
-                                                                                  ),
+                                                                              Column(
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.center,
+                                                                            mainAxisAlignment:
+                                                                                MainAxisAlignment.center,
+                                                                            children: [
+                                                                              Text(
+                                                                                '${calories?.replaceAll(' kcal', '')}',
+                                                                                style: TextStyle(
+                                                                                  fontSize: 12,
+                                                                                  fontWeight: FontWeight.w400,
                                                                                 ),
-                                                                                Text(
-                                                                                  'kcal',
-                                                                                  style: TextStyle(
-                                                                                    fontSize: 12,
-                                                                                    fontWeight: FontWeight.w400,
-                                                                                  ),
+                                                                              ),
+                                                                              Text(
+                                                                                'kcal',
+                                                                                style: TextStyle(
+                                                                                  fontSize: 12,
+                                                                                  fontWeight: FontWeight.w400,
                                                                                 ),
-                                                                              ],
-                                                                            ),
+                                                                              ),
+                                                                            ],
                                                                           ),
-                                                                        ),
+                                                                        )
                                                                       ],
                                                                     ),
                                                                   ),
-                                                                  const SizedBox(
-                                                                      height:
-                                                                          5),
-                                                                ],
-                                                              );
+                                                                );
+                                                              } else {
+                                                                return const SizedBox
+                                                                    .shrink();
+                                                              }
                                                             }).toList(),
-                                                            GestureDetector(
-                                                              onTap: () {
-                                                                setState(() {
-                                                                  _toggleDetailsForTitle(
-                                                                      meal[
-                                                                          'title']);
-                                                                });
-                                                              },
-                                                              child: Center(
-                                                                child: Icon(
-                                                                  _getIconForTitle(
-                                                                      meal[
-                                                                          'title'],
-                                                                      meal[
-                                                                          'details']),
-                                                                  size: 30,
+                                                            Visibility(
+                                                              visible: mealType ==
+                                                                      'Breakfast'
+                                                                  ? _showDetails
+                                                                  : mealType ==
+                                                                          'Lunch'
+                                                                      ? _showDetails2
+                                                                      : mealType ==
+                                                                              'Dinner'
+                                                                          ? _showDetails3
+                                                                          : mealType == 'Snack'
+                                                                              ? _showDetails4
+                                                                              : false,
+                                                              child:
+                                                                  GestureDetector(
+                                                                onTap: () {
+                                                                  setState(() {
+                                                                    _toggleDetailsForTitle(
+                                                                        mealType);
+                                                                  });
+                                                                },
+                                                                child:
+                                                                    const Center(
+                                                                  child: Icon(
+                                                                    Icons
+                                                                        .keyboard_arrow_up,
+                                                                    size: 30,
+                                                                  ),
                                                                 ),
                                                               ),
                                                             ),
                                                           ],
                                                         ),
                                                       ),
-                                                  ],
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
-                                            ],
-                                          );
-                                        }).toList(),
-                                      ),
-                                    ),
-                                    const SizedBox(height: 16.0),
-                                  ],
-                                );
-                              } else {
-                                // Return empty container for other days
-                                return Container();
-                              }
-                            }).toList(),
+                                            ),
+                                        ],
+                                      );
+                                    } else {
+                                      return const SizedBox.shrink();
+                                    }
+                                  }).toList()
+                                : [
+                                    Container()
+                                  ], // If dataList is empty, return an empty Container
                           ),
                           const SizedBox(height: 20),
                           Row(
