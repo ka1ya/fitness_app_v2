@@ -199,85 +199,78 @@ class _SignUpPageState extends State<SignUpPage> {
 
                                     //Platform.isIOS
 
-                                   Visibility(
+                                    Visibility(
                                       visible: Platform.isIOS,
                                       child: GestureDetector(
                                         onTap: () async {
                                           try {
-                                            
-
-                                           // print(result.authorizationCode);
-                                            platyBloc.add(SignUpWithAppleEvent());
+                                            // print(result.authorizationCode);
+                                            platyBloc
+                                                .add(SignUpWithAppleEvent());
                                             // You can use the result to authenticate the user with your server.
                                           } catch (error) {
                                             print(error.toString());
                                           }
-
-                                           
                                         },
                                         child: Container(
-                                            constraints: BoxConstraints(
-                                              maxHeight: 52,
-                                              maxWidth: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.92,
+                                          constraints: BoxConstraints(
+                                            maxHeight: 52,
+                                            maxWidth: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.92,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(100.0),
+                                            gradient: const LinearGradient(
+                                              begin: Alignment(0.0, -1.0),
+                                              end: Alignment(1.0, 1.0),
+                                              colors: [
+                                                Colors.transparent,
+                                                Colors.transparent
+                                              ],
+                                              stops: [0.0, 1.0],
                                             ),
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(100.0),
-                                              gradient: const LinearGradient(
-                                                begin: Alignment(0.0, -1.0),
-                                                end: Alignment(1.0, 1.0),
-                                                colors: [
-                                                  Colors.transparent,
-                                                  Colors.transparent
-                                                ],
-                                                stops: [0.0, 1.0],
-                                              ),
-                                              border: Border.all(
-                                                  color: Colors.grey),
-                                            ),
-                                            child: GestureDetector(
-                                                child: Center(
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Image.asset(
-                                                        'assets/images/apple_logo.png',
-                                                        width: 20,
-                                                        height: 23,
-                                                      ),
-                                                      const SizedBox(
-                                                        width: 20,
-                                                      ),
-                                                      const Text(
-                                                        'Continue with Apple',
-                                                        style: TextStyle(
-                                                          color: Colors.black,
-                                                          fontFamily: 'Gilroy',
-                                                          fontSize: 16,
-                                                          letterSpacing: 0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          height: 1,
-                                                        ),
-                                                      ),
-                                                    ],
+                                            border:
+                                                Border.all(color: Colors.grey),
+                                          ),
+                                          child: GestureDetector(
+                                            child: Center(
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  Image.asset(
+                                                    'assets/images/apple_logo.png',
+                                                    width: 20,
+                                                    height: 23,
                                                   ),
-                                                ),
-                                               
+                                                  const SizedBox(
+                                                    width: 20,
+                                                  ),
+                                                  const Text(
+                                                    'Continue with Apple',
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontFamily: 'Gilroy',
+                                                      fontSize: 16,
+                                                      letterSpacing: 0,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      height: 1,
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
+                                          ),
+                                        ),
                                       ),
                                     ),
 
-                                    
                                     const SizedBox(height: 10),
                                     GestureDetector(
                                       onTap: () {
@@ -638,7 +631,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     KeyboardVisibilityBuilder(builder: (context, visible) {
                       return Visibility(
-                        visible: !visible,
+                        visible: false,
                         child: const Positioned.fill(
                           child: Center(
                             child: Padding(

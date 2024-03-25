@@ -24,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _allFieldsFilled = false;
 
-   // Define a FocusNode for the email text field
+  // Define a FocusNode for the email text field
   final FocusNode _emailFocusNode = FocusNode();
   final FocusNode _passwordFocusNode = FocusNode();
 
@@ -43,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
     _passwordFocusNode.addListener(_onPasswordFocusChange);
   }
 
-   // Dispose the FocusNode when not needed
+  // Dispose the FocusNode when not needed
   @override
   void dispose() {
     _emailFocusNode.dispose();
@@ -51,8 +51,7 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-
-   void _onEmailFocusChange() {
+  void _onEmailFocusChange() {
     setState(() {
       // Change the border color based on focus
       _isErrorRequest = false;
@@ -67,13 +66,13 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _updateButtonState() {
-  setState(() {
-    _allFieldsFilled = _email != null &&
-        _email!.isNotEmpty &&
-        _password != null &&
-        _password!.isNotEmpty;
-  });
-}
+    setState(() {
+      _allFieldsFilled = _email != null &&
+          _email!.isNotEmpty &&
+          _password != null &&
+          _password!.isNotEmpty;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +85,6 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
-      
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -124,8 +122,8 @@ class _LoginPageState extends State<LoginPage> {
               scrollDirection: Axis.vertical,
               slivers: [
                 SliverFillRemaining(
-                  child: Stack(
-                    children: [Column(
+                  child: Stack(children: [
+                    Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
                         Flexible(
@@ -155,83 +153,77 @@ class _LoginPageState extends State<LoginPage> {
                                       textAlign: TextAlign.center,
                                     ),
                                     const SizedBox(height: 30),
-
-
                                     Visibility(
                                       visible: Platform.isIOS,
                                       child: GestureDetector(
                                         onTap: () async {
                                           try {
-                                           platyBloc.add(LogInWithAppleEvent());
-                                           
+                                            platyBloc
+                                                .add(LogInWithAppleEvent());
+
                                             // You can use the result to authenticate the user with your server.
                                           } catch (error) {
                                             print(error.toString());
                                           }
                                         },
                                         child: Container(
-                                            constraints: BoxConstraints(
-                                              maxHeight: 52,
-                                              maxWidth: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.92,
+                                          constraints: BoxConstraints(
+                                            maxHeight: 52,
+                                            maxWidth: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.92,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(100.0),
+                                            gradient: const LinearGradient(
+                                              begin: Alignment(0.0, -1.0),
+                                              end: Alignment(1.0, 1.0),
+                                              colors: [
+                                                Colors.transparent,
+                                                Colors.transparent
+                                              ],
+                                              stops: [0.0, 1.0],
                                             ),
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(100.0),
-                                              gradient: const LinearGradient(
-                                                begin: Alignment(0.0, -1.0),
-                                                end: Alignment(1.0, 1.0),
-                                                colors: [
-                                                  Colors.transparent,
-                                                  Colors.transparent
-                                                ],
-                                                stops: [0.0, 1.0],
-                                              ),
-                                              border: Border.all(
-                                                  color: Colors.grey),
-                                            ),
-                                            child: GestureDetector(
-                                                child: Center(
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Image.asset(
-                                                        'assets/images/apple_logo.png',
-                                                        width: 20,
-                                                        height: 23,
-                                                      ),
-                                                      const SizedBox(
-                                                        width: 20,
-                                                      ),
-                                                      const Text(
-                                                        'Continue with Apple',
-                                                        style: TextStyle(
-                                                          color: Colors.black,
-                                                          fontFamily: 'Gilroy',
-                                                          fontSize: 16,
-                                                          letterSpacing: 0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          height: 1,
-                                                        ),
-                                                      ),
-                                                    ],
+                                            border:
+                                                Border.all(color: Colors.grey),
+                                          ),
+                                          child: GestureDetector(
+                                            child: Center(
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  Image.asset(
+                                                    'assets/images/apple_logo.png',
+                                                    width: 20,
+                                                    height: 23,
                                                   ),
-                                                ),
-                                               
+                                                  const SizedBox(
+                                                    width: 20,
+                                                  ),
+                                                  const Text(
+                                                    'Continue with Apple',
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontFamily: 'Gilroy',
+                                                      fontSize: 16,
+                                                      letterSpacing: 0,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      height: 1,
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
+                                          ),
+                                        ),
                                       ),
                                     ),
-
-
                                     const SizedBox(height: 10),
                                     GestureDetector(
                                       onTap: () {
@@ -240,9 +232,10 @@ class _LoginPageState extends State<LoginPage> {
                                       child: Container(
                                         constraints: BoxConstraints(
                                           maxHeight: 52,
-                                          maxWidth:
-                                              MediaQuery.of(context).size.width *
-                                                  0.92,
+                                          maxWidth: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.92,
                                         ),
                                         decoration: BoxDecoration(
                                           borderRadius:
@@ -256,7 +249,8 @@ class _LoginPageState extends State<LoginPage> {
                                             ],
                                             stops: [0.0, 1.0],
                                           ),
-                                          border: Border.all(color: Colors.grey),
+                                          border:
+                                              Border.all(color: Colors.grey),
                                         ),
                                         child: Center(
                                           child: Row(
@@ -307,11 +301,12 @@ class _LoginPageState extends State<LoginPage> {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(14.0),
                                     border: Border.all(
-                                        color: _isErrorVisible
+                                      color: _isErrorVisible
                                           ? Colors.red
                                           : _emailFocusNode.hasFocus
                                               ? Colors.black
-                                              : Colors.transparent,),
+                                              : Colors.transparent,
+                                    ),
                                     color: Colors.white,
                                     boxShadow: const [
                                       BoxShadow(
@@ -329,7 +324,7 @@ class _LoginPageState extends State<LoginPage> {
                                         _email = value;
                                         _isErrorVisible =
                                             false; // Reset error visibility
-                                            _updateButtonState();
+                                        _updateButtonState();
                                       });
                                     },
                                     maxLength: 25,
@@ -366,11 +361,12 @@ class _LoginPageState extends State<LoginPage> {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(14.0),
                                     border: Border.all(
-                                        color: _isErrorVisible
+                                      color: _isErrorVisible
                                           ? Colors.red
                                           : _passwordFocusNode.hasFocus
                                               ? Colors.black
-                                              : Colors.transparent,),
+                                              : Colors.transparent,
+                                    ),
                                     color: Colors.white,
                                     boxShadow: const [
                                       BoxShadow(
@@ -388,7 +384,7 @@ class _LoginPageState extends State<LoginPage> {
                                         _password = value;
                                         _isErrorVisible =
                                             false; // Reset error visibility
-                                            _updateButtonState();
+                                        _updateButtonState();
                                       });
                                     },
                                     maxLength: 25,
@@ -493,7 +489,8 @@ class _LoginPageState extends State<LoginPage> {
                           child: Container(
                             constraints: BoxConstraints(
                               maxHeight: 52,
-                              maxWidth: MediaQuery.of(context).size.width * 0.92,
+                              maxWidth:
+                                  MediaQuery.of(context).size.width * 0.92,
                             ),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(100.0),
@@ -501,9 +498,12 @@ class _LoginPageState extends State<LoginPage> {
                                 begin: const Alignment(0.0, -1.0),
                                 end: const Alignment(1.0, 1.0),
                                 colors: [
-                                  
-                                  _allFieldsFilled ? const Color.fromRGBO(164, 171, 155, 1) : const Color.fromRGBO(205, 201, 196, 1),
-                                  _allFieldsFilled ? const Color.fromRGBO(164, 171, 155, 1) : const Color.fromRGBO(205, 201, 196, 1)
+                                  _allFieldsFilled
+                                      ? const Color.fromRGBO(164, 171, 155, 1)
+                                      : const Color.fromRGBO(205, 201, 196, 1),
+                                  _allFieldsFilled
+                                      ? const Color.fromRGBO(164, 171, 155, 1)
+                                      : const Color.fromRGBO(205, 201, 196, 1)
                                 ],
                                 stops: [0.0, 1.0],
                               ),
@@ -556,8 +556,7 @@ class _LoginPageState extends State<LoginPage> {
                                       ),
                                       const SizedBox(height: 8),
                                       GestureDetector(
-                                        onTap: () => Navigator.pop(
-                                            context),
+                                        onTap: () => Navigator.pop(context),
                                         child: const Directionality(
                                           textDirection: TextDirection.ltr,
                                           child: Text(
@@ -565,7 +564,7 @@ class _LoginPageState extends State<LoginPage> {
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                                 color: Color.fromRGBO(
-                                                      255, 163, 132, 1),
+                                                    255, 163, 132, 1),
                                                 fontFamily: 'Gilroy',
                                                 fontSize: 16,
                                                 letterSpacing: 0,
@@ -584,9 +583,9 @@ class _LoginPageState extends State<LoginPage> {
                         }),
                       ],
                     ),
-                     KeyboardVisibilityBuilder(builder: (context, visible) {
+                    KeyboardVisibilityBuilder(builder: (context, visible) {
                       return Visibility(
-                        visible: !visible,
+                        visible: false,
                         child: const Positioned.fill(
                           child: Center(
                             child: Padding(
@@ -620,8 +619,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       );
                     }),
-                    ]
-                  ),
+                  ]),
                 ),
               ],
             ),
