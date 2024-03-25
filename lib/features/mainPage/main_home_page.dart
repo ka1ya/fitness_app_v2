@@ -31,7 +31,6 @@ class _MainHomePageState extends State<MainHomePage> {
     _scrollControllers = List.generate(4, (_) => ScrollController());
     _scrollControllers.forEach((controller) {
       controller.addListener(_onScroll);
-      BlocProvider.of<PlatyBloc>(context).add(MealPlanDataEvent([]));
     });
   }
 
@@ -1459,6 +1458,7 @@ class _MainHomeState extends State<MainHome> {
   void initState() {
     super.initState();
     _currentPageIndex = 0;
+    BlocProvider.of<PlatyBloc>(context).add(MealPlanDataEvent([]));
   }
 
   bool _shouldShowDetails(String title) {
@@ -1531,7 +1531,7 @@ class _MainHomeState extends State<MainHome> {
         if (state is MealPlanDataState) {
           List<Map<String, dynamic>> dataFromJson = state.successMessage;
           print('Data: $dataFromJson');
-          dataList = dataFromJson;
+          // dataList = dataFromJson;
         }
         return Stack(
           children: [
