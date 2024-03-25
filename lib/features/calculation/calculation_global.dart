@@ -185,11 +185,11 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
       const CalculateFoodPreferencesWidget(),
       if (userModelBuilder.tpd_count == '1-2 TPD') ...[
         const CalculateFirstTPDWidget(),
-      ] else if (userModelBuilder.tpd_count == '3 TPD') ...[
+      ] else if (userModelBuilder.tpd_count == '3TPD') ...[
         const CalculateThirdTPDWidget(),
-      ] else if (userModelBuilder.tpd_count == '4 TPD') ...[
+      ] else if (userModelBuilder.tpd_count == '4TPD') ...[
         const CalculateFourthTPDWidget(),
-      ] else if (userModelBuilder.tpd_count == '5 TPD') ...[
+      ] else if (userModelBuilder.tpd_count == '5TPD') ...[
         const CalculateFifthTPDWidget(),
       ] else if (userModelBuilder.tpd_count == 'Intermediate Fasting') ...[
         const CalculateIntermediateFastingWidget(),

@@ -72,17 +72,17 @@ class _ProfileFoodPreferencesWidgetState
                     context,
                     MaterialPageRoute(
                         builder: (context) => const ProfileFirstTPDWidget()));
-              } else if (updateProfileData['tpd_count'] == '3 TPD') {
+              } else if (updateProfileData['tpd_count'] == '3TPD') {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => const ProfileThirdTPDWidget()));
-              } else if (updateProfileData['tpd_count'] == '4 TPD') {
+              } else if (updateProfileData['tpd_count'] == '4TPD') {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => const ProfileFourthTPDWidget()));
-              } else if (updateProfileData['tpd_count'] == '5 TPD') {
+              } else if (updateProfileData['tpd_count'] == '5TPD') {
                 Navigator.push(
                     context,
                     MaterialPageRoute(

@@ -38,21 +38,30 @@ android {
         versionCode 1
         versionName 'meyes 1.0'
     }
-
-     signingConfigs {
-       debug {
-           keyAlias 'androiddebugkey'
-        keyPassword 'android'
-        storeFile file('androiddebugkey.jks')
-        storePassword 'android'
-       }
-   }
+    signingConfigs {
+        release {
+            keyAlias 'key'
+            keyPassword 'meyeskey'
+            storeFile file('meyes-release-key.jks')
+            storePassword 'meyeskey'
+        }
+        debug {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storeFile file('androiddebugkey.jks')
+            storePassword 'android'
+        }
+    }
 
     buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
         debug {
             signingConfig signingConfigs.debug
         }
     }
+
 }
 
 flutter {
