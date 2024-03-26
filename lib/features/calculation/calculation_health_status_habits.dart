@@ -16,7 +16,7 @@ class _CalculateHealthStatusHabitsWidgetState
     extends State<CalculateHealthStatusHabitsWidget> {
   List<String> titles = [
     'Smoking',
-    'Alcohol Consumption ',
+    'Alcohol Consumption',
   ];
   List<String> imageTitle = ['smoking', 'alcogol'];
   List<bool> _isCheckedList = [];

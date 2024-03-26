@@ -58,7 +58,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
     ]
   };
 
-  List<Map<String, dynamic>> dataList = [
+  dynamic dataList = [
     {
       "meals": [
         {
@@ -444,9 +444,12 @@ class _MealPlanPageState extends State<MealPlanPage> {
       body: BlocBuilder<PlatyBloc, PlatyBlocState>(
         builder: (context, state) {
           if (state is MealPlanDataState) {
-            List<Map<String, dynamic>> dataFromJson = state.successMessage;
-            print(dataFromJson.length);
-            dataList = dataFromJson;
+             print(state.successMessage);
+          dataList = state.successMessage;
+          
+          //List<Map<String, dynamic>> dataFromJson = state.successMessage;
+          //print('Data: $dataFromJson');
+         // dataList = dataFromJson;
           }
           return Stack(children: [
             Positioned.fill(
@@ -632,14 +635,16 @@ class _MealPlanPageState extends State<MealPlanPage> {
                                   index; // Adjust the day number
                               return GestureDetector(
                                 onTap: () {
-                                  setState(() {
-                                    _days = dayNumber;
+                                 if (_days < dataList.length) {
+                                     setState(() {
+                                    _days = dayNumber == dataList.length ? dataList.length -1 : dayNumber;
                                     _showDetails = false;
                                     _showDetails2 = false;
                                     _showDetails3 = false;
                                     _showDetails4 =
-                                        false; // Update _days with the adjusted day number
+                                        false; 
                                   });
+                                  } 
                                 },
                                 child: Column(
                                   children: [

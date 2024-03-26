@@ -187,7 +187,7 @@ class _MainHomeState extends State<MainHome> {
   int _days = 0;
 
   // Sample data
-  List<Map<String, dynamic>> dataList = [
+  dynamic dataList = [
     {
       "meals": [
         {
@@ -451,6 +451,8 @@ class _MainHomeState extends State<MainHome> {
     }
   ];
 
+  int mealsCountin = 0;
+
   bool _alert = true;
 
   IconData _getIconForTitle(String title, List<dynamic> details) {
@@ -551,9 +553,12 @@ class _MainHomeState extends State<MainHome> {
     return BlocBuilder<PlatyBloc, PlatyBlocState>(
       builder: (context, state) {
         if (state is MealPlanDataState) {
-          List<Map<String, dynamic>> dataFromJson = state.successMessage;
-          print('Data: $dataFromJson');
-          dataList = dataFromJson;
+          print(state.successMessage);
+          dataList = state.successMessage;
+
+          //List<Map<String, dynamic>> dataFromJson = state.successMessage;
+          //print('Data: $dataFromJson');
+          // dataList = dataFromJson;
         }
         return Stack(
           children: [
@@ -880,14 +885,22 @@ class _MainHomeState extends State<MainHome> {
                                   index; // Adjust the day number
                               return GestureDetector(
                                 onTap: () {
-                                  setState(() {
-                                    _days = dayNumber;
+                                 print(dayNumber);
+
+                                  if (_days < dataList.length  ) {
+                                     setState(() {
+                                    _days = dayNumber == dataList.length ? dataList.length -1 : dayNumber;
                                     _showDetails = false;
                                     _showDetails2 = false;
                                     _showDetails3 = false;
                                     _showDetails4 =
-                                        false; // Update _days with the adjusted day number
+                                        false; 
                                   });
+                                  } 
+
+                             
+
+                                 
                                 },
                                 child: Column(
                                   children: [

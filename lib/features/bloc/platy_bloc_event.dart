@@ -179,7 +179,7 @@ class UpdateProfilePatchEvent extends PlatyBlocEvent {
 // week meal plan
 
 class MealPlanDataEvent extends PlatyBlocEvent {
-  final List<Map<String, dynamic>> data;
+  final dynamic data;
 
   MealPlanDataEvent(this.data);
 }
