@@ -46,6 +46,7 @@ import 'package:platy/features/calculation/calculation_user_name.dart';
 import 'package:platy/features/calculation/calculation_water_consumption.dart';
 import 'package:platy/features/calculation/calculation_weight.dart';
 import 'package:platy/features/calculation/repositories/models/update_user_model.dart';
+import 'package:platy/features/generation/meal_generation_page.dart';
 import 'package:platy/features/mainPage/main_home_page.dart';
 
 class CalculateGlobalWidget extends StatefulWidget {
@@ -315,13 +316,17 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                         if (_lastPage == true) {
                           final userModel = userModelBuilder.build();
                           print(userModel.toJson());
+
                           platyBloc.add(CreateProfileEvent(userModel.toJson()));
+                          
 
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      const MainHomePage()));
+                                       MealGenerationPage(userModel: userModel,))); 
+
+                                       
                         } else {
                           setState(() {
                             checkIfHabbit(lisWidgets);

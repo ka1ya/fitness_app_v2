@@ -392,13 +392,31 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
       emit(ProfileIncludesDataState(responseData));
     });
 
-    on<MealPlanDataEvent>((event, emit) async {
-      //partical update
-      final response =
-          await apiService.fetchDataPlan('/week-meelplan/', event.data);
+   on<MealPlanDataEvent>((event, emit) async {
+ 
+  dynamic fetchDataAndCheck() async {
+  final response = await apiService.fetchData('/week-meelplan/', {});
+  print(response);
 
-      print(response);
-      emit(MealPlanDataState(response.cast<Map<String, dynamic>>()));
-    });
+  // Перевірка, чи присутні дані у відповіді
+  if (response is !String) {
+    print('Дані знайдено');
+    // Робимо щось з отриманими даними
+    emit(MealPlanDataState(response)); // Отправляем полученные данные в поток
+  } else {
+    print('Дані не знайдено, спробуйте знову через 5 секунд');
+    // Затримка перед наступною спробою
+    await Future.delayed(const Duration(seconds: 5));
+    // Рекурсивно викликаємо функцію для повторної спроби
+    await fetchDataAndCheck();
+  }
+}
+
+  // Початок процесу: виклик функції
+  await fetchDataAndCheck();
+
+});
+
+
   }
 }

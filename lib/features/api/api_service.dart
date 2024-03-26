@@ -69,7 +69,7 @@ class ApiService {
     }
   }
 
-  Future<Map<String, dynamic>> fetchData(
+ dynamic fetchData(
       String path, Map<String, dynamic> getData) async {
     final response = await _dio.get(
       path,
