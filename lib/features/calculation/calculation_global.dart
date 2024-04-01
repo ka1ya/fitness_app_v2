@@ -87,6 +87,8 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
   int? indexBonesPage;
   int? indexEmotionsPage;
   int? indexDigestivePage;
+  int? indexSymptomsPage;
+  int? indexSugarPage;
 
   void setButtonActivity(bool isActive) {
     setState(() {
@@ -112,6 +114,8 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
         setState(() {
           indexDigestivePage = i + 1;
           indexEmotionsPage = indexDigestivePage! + 1;
+          indexSugarPage = indexEmotionsPage! + 2;
+          indexSymptomsPage = indexEmotionsPage! + 3;
         });
         break;
       }
@@ -141,7 +145,9 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
         (userModelBuilder.health_test == true &&
             pageNotifier.value == indexBonesPage) ||
         pageNotifier.value == indexDigestivePage ||
-        pageNotifier.value == indexEmotionsPage) {
+        pageNotifier.value == indexEmotionsPage ||
+        pageNotifier.value == indexSymptomsPage ||
+        pageNotifier.value == indexSugarPage) {
       isSkipButtonWidget = true;
     }
     showSkipButtonNotifier.value = isSkipButtonWidget;
@@ -220,8 +226,8 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
       const CalculateHomeEatingAskWidget(),
       if (userModelBuilder.is_outside_eating == true) ...[
         const CalculateHomeEatingCalendarWidget(),
+        const CalculateCousinListWidget(),
       ],
-      const CalculateCousinListWidget(),
       const CalculateDeliveryQAWidget(),
       if (userModelBuilder.is_delivery == true) ...[
         const CalculateDeliveryListWidget(),
@@ -318,15 +324,14 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                           print(userModel.toJson());
 
                           platyBloc.add(CreateProfileEvent(userModel.toJson()));
-                          
 
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                       MealGenerationPage(userModel: userModel,))); 
-
-                                       
+                                      MealGenerationPage(
+                                        userModel: userModel,
+                                      )));
                         } else {
                           setState(() {
                             checkIfHabbit(lisWidgets);

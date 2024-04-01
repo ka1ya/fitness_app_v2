@@ -81,7 +81,7 @@ class _CalculateWeightLossWidgetState extends State<CalculateWeightLossWidget> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  "What's your weight?",
+                  "Specify your desired weight",
                   textAlign: TextAlign.center,
                   style: whiteTheme.textTheme.bodyMedium,
                 ),

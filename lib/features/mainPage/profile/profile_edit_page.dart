@@ -203,7 +203,6 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                     ),
                   ),
                   const SizedBox(height: 13),
-                
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 1,
                     child: Column(
@@ -225,6 +224,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                             ],
                           ),
                           child: TextFormField(
+                            textCapitalization: TextCapitalization.words,
                             controller: _controllerFirstName,
                             maxLength: 25,
                             decoration: InputDecoration(

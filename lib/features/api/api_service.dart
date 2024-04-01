@@ -69,8 +69,7 @@ class ApiService {
     }
   }
 
- dynamic fetchData(
-      String path, Map<String, dynamic> getData) async {
+  dynamic fetchData(String path, Map<String, dynamic> getData) async {
     final response = await _dio.get(
       path,
       data: getData,
@@ -88,8 +87,7 @@ class ApiService {
     }
   }
 
-  Future<List> fetchDataPlan(
-      String path, List<Map<String, dynamic>> getData) async {
+  dynamic fetchDataPlan(String path, Map<String, dynamic> getData) async {
     final response = await _dio.get(
       path,
       data: getData,
@@ -102,8 +100,14 @@ class ApiService {
     if (response.statusCode == 401) {
       await refreshToken();
       return fetchDataPlan(path, getData);
-    } else {
+    }
+    // else if (response.statusCode == 404) {
+    // }
+    else if (response.statusCode == 200) {
       return response.data;
+    } else {
+      await Future.delayed(const Duration(seconds: 60));
+      return fetchDataPlan(path, getData);
     }
   }
 

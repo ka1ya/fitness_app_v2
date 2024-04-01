@@ -17,7 +17,7 @@ class _CalculateDiversityPlanWidgetState
   List<String> titles = [
     'Each new day new meal plan',
     'New meal plan each second day',
-    'Same meal plan Mo-Fr and diverse plan for Sa-So',
+    'Same meal plan for Mo-Fr and different for Sa-So',
   ];
   int? _selectedIndex;
 

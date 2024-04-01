@@ -327,7 +327,7 @@ class _LoginPageState extends State<LoginPage> {
                                         _updateButtonState();
                                       });
                                     },
-                                    maxLength: 25,
+                                    maxLength: 255,
                                     decoration: const InputDecoration(
                                       contentPadding: EdgeInsets.only(left: 20),
                                       counterText: '',

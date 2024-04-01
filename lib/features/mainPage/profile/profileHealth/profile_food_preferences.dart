@@ -21,6 +21,14 @@ class ProfileFoodPreferencesWidget extends StatefulWidget {
 class _ProfileFoodPreferencesWidgetState
     extends State<ProfileFoodPreferencesWidget> {
   List<String> titles = [
+    '1-2 per day',
+    '3 per day',
+    '4 per day',
+    '5 per day',
+    'Only snacks',
+    'Intermediate Fasting',
+  ];
+  List<String> modelTitles = [
     '1-2 TPD',
     '3TPD',
     '4TPD',
@@ -148,7 +156,7 @@ class _ProfileFoodPreferencesWidgetState
                       onTilePressed: (isChecked) {
                         setState(() {
                           _selectedIndex = isChecked ? index : null;
-                          updateProfileData['tpd_count'] = titles[index];
+                          updateProfileData['tpd_count'] = modelTitles[index];
                           print(updateProfileData['tpd_count']);
                         });
                       },

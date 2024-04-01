@@ -22,25 +22,19 @@ class MealGenerationPage extends StatefulWidget {
 class _MealGenerationPageState extends State<MealGenerationPage> {
   // get userModel => userModel;
 
-bool goHome = false;
+  bool goHome = false;
 
   void initState() {
     super.initState();
-  BlocProvider.of<PlatyBloc>(context).add(MealPlanDataEvent(const []));
+    BlocProvider.of<PlatyBloc>(context).add(MealPlanDataEvent(const []));
   }
-
-
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PlatyBloc, PlatyBlocState>(
       builder: (context, state) {
-         if (state is MealPlanDataState) {
- 
-        goHome = true;
-    
-          
-       
+        if (state is MealPlanDataState) {
+          goHome = true;
         }
         return Scaffold(
           backgroundColor: const Color.fromARGB(255, 240, 242, 236),
@@ -82,10 +76,11 @@ bool goHome = false;
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
                 ),
                 const SizedBox(height: 20),
-                 Center(
+                Center(
                   child: Column(
                     children: [
-                      Visibility( visible: !goHome,
+                      Visibility(
+                        visible: !goHome,
                         child: const CircularProgressIndicator(
                           valueColor: AlwaysStoppedAnimation<Color>(
                             Color.fromRGBO(255, 163, 132, 1),
@@ -94,53 +89,54 @@ bool goHome = false;
                           strokeWidth: 4,
                         ),
                       ),
-                      Visibility( visible: goHome,
+                      Visibility(
+                        visible: goHome,
                         child: GestureDetector(
                           onTap: () {
-                              Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-              builder: (context) => const MainHomePage(),
-            ),
-          );
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (context) => const MainHomePage(),
+                              ),
+                            );
                           },
                           child: Container(
-                                  constraints: const BoxConstraints(
-                                    maxHeight: 44,
-                                    maxWidth: 151,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100.0),
-                                    // ignore: prefer_const_constructors
-                                    gradient: LinearGradient(
-                                      begin: const Alignment(0.0, -1.0),
-                                      end: const Alignment(1.0, 1.0),
-                                      colors: const [
-                                        Color.fromRGBO(255, 163, 132, 1),
-                                        Color.fromRGBO(255, 163, 132, 1),
-                                      ],
-                                      stops: const [0.0, 1.0],
-                                    ),
-                                    boxShadow: const [
-                                      BoxShadow(
-                                        color: Colors.white,
-                                        blurRadius: 6,
-                                      ),
-                                    ],
-                                  ),
-                                  child: const Center(
-                                    child: Text(
-                                      'Go see my plan',
-                                      style: TextStyle(
-                                        color: Color.fromRGBO(255, 255, 255, 1),
-                                        fontFamily: 'Gilroy',
-                                        fontSize: 16,
-                                        letterSpacing: 0,
-                                        fontWeight: FontWeight.w600,
-                                        height: 1,
-                                      ),
-                                    ),
-                                  ),
+                            constraints: const BoxConstraints(
+                              maxHeight: 44,
+                              maxWidth: 151,
+                            ),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100.0),
+                              // ignore: prefer_const_constructors
+                              gradient: LinearGradient(
+                                begin: const Alignment(0.0, -1.0),
+                                end: const Alignment(1.0, 1.0),
+                                colors: const [
+                                  Color.fromRGBO(255, 163, 132, 1),
+                                  Color.fromRGBO(255, 163, 132, 1),
+                                ],
+                                stops: const [0.0, 1.0],
+                              ),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Colors.white,
+                                  blurRadius: 6,
                                 ),
+                              ],
+                            ),
+                            child: const Center(
+                              child: Text(
+                                'Go see my plan',
+                                style: TextStyle(
+                                  color: Color.fromRGBO(255, 255, 255, 1),
+                                  fontFamily: 'Gilroy',
+                                  fontSize: 16,
+                                  letterSpacing: 0,
+                                  fontWeight: FontWeight.w600,
+                                  height: 1,
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ],

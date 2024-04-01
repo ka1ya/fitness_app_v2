@@ -14,7 +14,7 @@ class CalculateSugarStatementsWidget extends StatefulWidget {
 class _CalculateSugarStatementsWidgetState
     extends State<CalculateSugarStatementsWidget> {
   List<String> titles = [
-    "I limit sugar intake",
+    "I rarely consume sugar",
     "I don't eat sweets but like processed food",
     'I would be happy to control my sugar intake but currently not doing it',
     'I like sweets and consume them every day',

@@ -15,6 +15,14 @@ class CalculateFoodPreferencesWidget extends StatefulWidget {
 class _CalculateFoodPreferencesWidgetState
     extends State<CalculateFoodPreferencesWidget> {
   List<String> titles = [
+    '1-2 per day',
+    '3 per day',
+    '4 per day',
+    '5 per day',
+    'Only snacks',
+    'Intermediate Fasting',
+  ];
+  List<String> modelTitles = [
     '1-2 TPD',
     '3TPD',
     '4TPD',
@@ -59,7 +67,7 @@ class _CalculateFoodPreferencesWidgetState
                         .setButtonActivity(_selectedIndex != null);
                     CalculateGlobalWidget.of(context)
                         .userModelBuilder
-                        .tpd_count = titles[index];
+                        .tpd_count = modelTitles[index];
                   });
                 },
               );
