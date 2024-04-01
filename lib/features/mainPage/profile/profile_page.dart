@@ -389,10 +389,12 @@ class _ProfilePageState extends State<ProfilePage> {
               isDestructiveAction: true,
               onPressed: () {
                 platyBloc.add(LogOutEvent(logOutData));
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => const LoginPage()));
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => const LoginPage()),
+                  (route) => false,
+                );
               },
               child: const Text('Log Out'),
             ),
