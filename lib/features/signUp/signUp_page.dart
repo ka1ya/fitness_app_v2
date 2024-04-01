@@ -24,6 +24,7 @@ class _SignUpPageState extends State<SignUpPage> {
   bool _isFieldsEmpty = true;
   bool _isErrorRequest = false;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  String? textOfError;
 
   // Define a FocusNode for the email text field
   final FocusNode _emailFocusNode = FocusNode();
@@ -148,6 +149,7 @@ class _SignUpPageState extends State<SignUpPage> {
               setState(() {
                 _isPasswordsEqual = false;
                 _isErrorRequest = true;
+                textOfError = state.errorMessage['message']['email'][0];
               });
             }
             ;
@@ -407,10 +409,12 @@ class _SignUpPageState extends State<SignUpPage> {
                                 ),
                               ),
                               if (_isErrorRequest)
-                                const Padding(
+                                Padding(
                                   padding: EdgeInsets.only(top: 4.0, left: 35),
                                   child: Text(
-                                    'This email is already in use.',
+                                    textOfError == null
+                                        ? 'Please enter a valid email address'
+                                        : textOfError!,
                                     style: TextStyle(
                                       color: Colors.red,
                                       fontSize: 12,
