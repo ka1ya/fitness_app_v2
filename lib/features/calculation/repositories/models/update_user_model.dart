@@ -89,8 +89,8 @@ class UpdateUserModel {
   final String? emotional_wellbeing;
   final String water_consumption;
   final String closer_statements;
-  final String sugar_statements;
-  final List<String> current_symptoms;
+  final String? sugar_statements;
+  final List<String>? current_symptoms;
   final List<String> current_goals;
   final List<String>? refrigerator_food;
 
@@ -145,8 +145,8 @@ class UpdateUserModel {
           'emotional_wellbeing': emotional_wellbeing,
         'closer_statements': closer_statements,
         'water_consumption': water_consumption,
-        'sugar_statements': sugar_statements,
-        'current_symptoms': current_symptoms,
+        if (sugar_statements != null) 'sugar_statements': sugar_statements,
+        if (current_symptoms != null) 'current_symptoms': current_symptoms,
         'current_goals': current_goals,
         if (refrigerator_food != null) 'refrigerator_food': refrigerator_food,
         'gender': 'Female',
@@ -194,8 +194,8 @@ class UpdateUserModel {
         emotional_wellbeing = builder.emotional_wellbeing,
         water_consumption = builder.water_consumption!,
         closer_statements = builder.closer_statements!,
-        sugar_statements = builder.sugar_statements!,
-        current_symptoms = builder.current_symptoms!,
+        sugar_statements = builder.sugar_statements,
+        current_symptoms = builder.current_symptoms,
         current_goals = builder.current_goals!,
         refrigerator_food = builder.refrigerator_food;
 }
