@@ -13,8 +13,8 @@ class CalculateAgeWidget extends StatefulWidget {
 class _CalculateAgeWidgetState extends State<CalculateAgeWidget> {
   bool _isButtonActive = false;
   final int _nTotalCount = 100;
-  final int _nInitValue = 18;
-  int _nCurrentValue = 18;
+  final int _nInitValue = 50;
+  int _nCurrentValue = 50;
   @override
   Widget build(BuildContext context) {
     return Column(

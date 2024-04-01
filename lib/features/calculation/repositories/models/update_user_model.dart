@@ -88,7 +88,7 @@ class UpdateUserModel {
   final Map<String, dynamic>? digestive_health;
   final String? emotional_wellbeing;
   final String water_consumption;
-  final String closer_statements;
+  final String? closer_statements;
   final String? sugar_statements;
   final List<String>? current_symptoms;
   final List<String> current_goals;
@@ -143,7 +143,7 @@ class UpdateUserModel {
         if (digestive_health != null) 'digestive_health': digestive_health,
         if (emotional_wellbeing != null)
           'emotional_wellbeing': emotional_wellbeing,
-        'closer_statements': closer_statements,
+        'closer_statements': '',
         'water_consumption': water_consumption,
         if (sugar_statements != null) 'sugar_statements': sugar_statements,
         if (current_symptoms != null) 'current_symptoms': current_symptoms,
@@ -193,7 +193,7 @@ class UpdateUserModel {
         digestive_health = builder.digestive_health,
         emotional_wellbeing = builder.emotional_wellbeing,
         water_consumption = builder.water_consumption!,
-        closer_statements = builder.closer_statements!,
+        closer_statements = builder.closer_statements,
         sugar_statements = builder.sugar_statements,
         current_symptoms = builder.current_symptoms,
         current_goals = builder.current_goals!,

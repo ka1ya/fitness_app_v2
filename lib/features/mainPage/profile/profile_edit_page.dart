@@ -401,11 +401,13 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
             CupertinoDialogAction(
               isDestructiveAction: true,
               onPressed: () async {
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => const LoginPage()));
-                await Future.delayed(const Duration(seconds: 1));
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => const LoginPage()),
+                  (route) => false,
+                );
+                await Future.delayed(const Duration(microseconds: 500));
                 platyBloc.add(DeleteAccountEvent(const {}));
               },
               child: const Text('Delete'),

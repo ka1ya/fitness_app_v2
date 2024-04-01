@@ -30,9 +30,7 @@ class _CalculateWaterConsumptionWidgetState
 
   void isActive() {
     if (CalculateGlobalWidget.of(context).userModelBuilder.water_consumption !=
-            null &&
-        CalculateGlobalWidget.of(context).userModelBuilder.closer_statements !=
-            null) {
+        null) {
       CalculateGlobalWidget.of(context).setButtonActivity(true);
     } else {
       CalculateGlobalWidget.of(context).setButtonActivity(false);
@@ -51,7 +49,7 @@ class _CalculateWaterConsumptionWidgetState
             textAlign: TextAlign.center,
             style: whiteTheme.textTheme.bodyMedium,
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 40),
           ListView.builder(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
@@ -64,7 +62,6 @@ class _CalculateWaterConsumptionWidgetState
                   setState(() {
                     if (isChecked) {
                       _selectedIndex = index;
-
                       CalculateGlobalWidget.of(context)
                           .userModelBuilder
                           .water_consumption = titlesAnxiety[_selectedIndex!];
@@ -80,45 +77,6 @@ class _CalculateWaterConsumptionWidgetState
             },
           ),
           const SizedBox(height: 40),
-          Text(
-            'Which of the statements is closer to you?',
-            textAlign: TextAlign.center,
-            style: whiteTheme.textTheme.bodyMedium,
-          ),
-          const SizedBox(height: 30),
-          ListView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemCount: titles.length,
-            itemBuilder: (context, index) {
-              return CustomListTileWithRadio(
-                title: titles[index],
-                isChecked: _selectedIndexState == index,
-                customStyle: const TextStyle(
-                  fontSize: 16,
-                  fontFamily: 'Gilroy',
-                  fontWeight: FontWeight.w400,
-                ),
-                containerHeight: 100,
-                onTilePressed: (isChecked) {
-                  setState(() {
-                    if (isChecked) {
-                      _selectedIndexState = index;
-
-                      CalculateGlobalWidget.of(context)
-                          .userModelBuilder
-                          .closer_statements = titles[_selectedIndexState!];
-                      isActive();
-                    } else {
-                      _selectedIndexState = null;
-                      CalculateGlobalWidget.of(context)
-                          .setButtonActivity(false);
-                    }
-                  });
-                },
-              );
-            },
-          ),
         ],
       ),
     );
