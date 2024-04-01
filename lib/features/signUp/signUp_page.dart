@@ -366,7 +366,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   ),
                                   child: TextFormField(
                                     focusNode: _emailFocusNode,
-                                    maxLength: 25,
+                                    maxLength: 255,
                                     decoration: const InputDecoration(
                                       contentPadding: EdgeInsets.only(left: 20),
                                       counterText: '',
@@ -410,7 +410,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 const Padding(
                                   padding: EdgeInsets.only(top: 4.0, left: 35),
                                   child: Text(
-                                    'Please enter a valid email address',
+                                    'This email is already in use.',
                                     style: TextStyle(
                                       color: Colors.red,
                                       fontSize: 12,

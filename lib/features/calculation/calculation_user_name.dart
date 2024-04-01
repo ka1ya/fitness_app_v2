@@ -46,6 +46,8 @@ class _CalculateNameWidgetState extends State<CalculateNameWidget> {
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8.0),
                   child: TextField(
+                    keyboardType: TextInputType.name,
+                    textCapitalization: TextCapitalization.words,
                     cursorColor: Colors.orange,
                     controller: _nameController,
                     textAlign: TextAlign.start,

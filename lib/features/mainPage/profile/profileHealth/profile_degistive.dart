@@ -18,7 +18,7 @@ class _ProfileDigestiveWidgetState extends State<ProfileDigestiveWidget> {
     'Gas',
     'Irregular bowel movements',
     'Constipation',
-    'Diarrhoea',
+    'Diarrhea',
     'Bloating',
     'Indigestion',
     'Abdominal pain and cramps',
@@ -27,7 +27,7 @@ class _ProfileDigestiveWidgetState extends State<ProfileDigestiveWidget> {
   ];
   Map<String, dynamic> _selectedOptions = {};
   void isActive() {
-    if (_selectedOptions.length == titles.length) {
+    if (_selectedOptions.isNotEmpty) {
       //bone_check_up
       _isButtonActive = true;
     } else {

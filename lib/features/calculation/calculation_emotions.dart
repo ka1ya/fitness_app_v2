@@ -67,7 +67,7 @@ class _CalculateEmotionsHealthWidgetState
           ),
         ),
         const SizedBox(
-          height: 40,
+          height: 20,
         ),
       ],
     );

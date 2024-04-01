@@ -16,7 +16,7 @@ class _ProfileDiversityPlanWidgetState
   List<String> titles = [
     'Each new day new meal plan',
     'New meal plan each second day',
-    'Same meal plan Mo-Fr and diverse plan for Sa-So',
+    'Same meal plan for Mo-Fr and different for Sa-So',
   ];
   bool _isButtonActive = false;
   int? _selectedIndex;

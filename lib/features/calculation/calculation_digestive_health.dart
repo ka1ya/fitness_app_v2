@@ -17,7 +17,7 @@ class _CalculateDigestiveHealthWidgetState
     'Gas',
     'Irregular bowel movements',
     'Constipation',
-    'Diarrhoea',
+    'Diarrhea',
     'Bloating',
     'Indigestion',
     'Abdominal pain and cramps',
@@ -26,7 +26,7 @@ class _CalculateDigestiveHealthWidgetState
   ];
   Map<String, dynamic> _selectedOptions = {};
   void isActive() {
-    if (_selectedOptions.length == titles.length) {
+    if (_selectedOptions.isNotEmpty) {
       CalculateGlobalWidget.of(context).userModelBuilder.digestive_health =
           _selectedOptions;
       CalculateGlobalWidget.of(context).setButtonActivity(true);
