@@ -21,8 +21,9 @@ class MealGenerationPage extends StatefulWidget {
 
 class _MealGenerationPageState extends State<MealGenerationPage> {
   // get userModel => userModel;
-
+  bool errorLLM = false;
   bool goHome = false;
+  String errorText = '';
 
   void initState() {
     super.initState();
@@ -35,6 +36,10 @@ class _MealGenerationPageState extends State<MealGenerationPage> {
       builder: (context, state) {
         if (state is MealPlanDataState) {
           goHome = true;
+        }
+        if (state is MealPlanErrorState) {
+          errorLLM = true;
+          errorText = state.errorMessage['Error'].toString();
         }
         return Scaffold(
           backgroundColor: const Color.fromARGB(255, 240, 242, 236),
@@ -80,7 +85,25 @@ class _MealGenerationPageState extends State<MealGenerationPage> {
                   child: Column(
                     children: [
                       Visibility(
-                        visible: !goHome,
+                        visible: (errorLLM == true) ? true : false,
+                        child: Center(
+                          child: Text(
+                            errorText,
+                            style: const TextStyle(
+                              color: Colors.red,
+                              fontFamily: 'Gilroy',
+                              fontSize: 16,
+                              letterSpacing: 0,
+                              fontWeight: FontWeight.w600,
+                              height: 1,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Visibility(
+                        visible: (goHome == false && errorLLM == false)
+                            ? true
+                            : false,
                         child: const CircularProgressIndicator(
                           valueColor: AlwaysStoppedAnimation<Color>(
                             Color.fromRGBO(255, 163, 132, 1),
@@ -90,7 +113,9 @@ class _MealGenerationPageState extends State<MealGenerationPage> {
                         ),
                       ),
                       Visibility(
-                        visible: goHome,
+                        visible: (goHome == true && errorLLM == false)
+                            ? true
+                            : false,
                         child: GestureDetector(
                           onTap: () {
                             Navigator.of(context).pushReplacement(
