@@ -395,9 +395,11 @@ class PlatyBloc extends Bloc<PlatyBlocEvent, PlatyBlocState> {
     on<MealPlanDataEvent>((event, emit) async {
       final response = await apiService.fetchDataPlan('/week-meelplan/', {});
       print(response);
-      if (response['Error'] == "Error during mealplan creation") {
+      if (response.length != 7) {
+        print("Event error state");
         emit(MealPlanErrorState(response));
       } else {
+        print("Event meal state");
         emit(MealPlanDataState(response));
       }
     });

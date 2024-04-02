@@ -47,6 +47,7 @@ class TokenManager {
 }
 
 class ApiService {
+  int counter = 0;
   final Dio _dio;
   final String _baseUrl = 'http://16.171.254.131/api/v1';
 
@@ -105,8 +106,14 @@ class ApiService {
     } else if (response.statusCode == 200) {
       return response.data;
     } else {
-      await Future.delayed(const Duration(seconds: 60));
-      return fetchDataPlan(path, getData);
+      await Future.delayed(const Duration(seconds: 30));
+      counter++;
+      print('counter = $counter');
+      if (counter == 7) {
+        return {'Error': 'Error during mealplan creation'};
+      } else {
+        return fetchDataPlan(path, getData);
+      }
     }
   }
 

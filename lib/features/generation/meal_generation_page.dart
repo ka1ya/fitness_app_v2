@@ -36,10 +36,13 @@ class _MealGenerationPageState extends State<MealGenerationPage> {
       builder: (context, state) {
         if (state is MealPlanDataState) {
           goHome = true;
+          print('goHome');
         }
         if (state is MealPlanErrorState) {
           errorLLM = true;
           errorText = state.errorMessage['Error'].toString();
+          print('errorLLM = $errorLLM');
+          print("errorText = $errorText");
         }
         return Scaffold(
           backgroundColor: const Color.fromARGB(255, 240, 242, 236),

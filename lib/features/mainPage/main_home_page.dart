@@ -592,8 +592,12 @@ class _MainHomeState extends State<MainHome> {
                       width: 32, height: 32),
                   actions: [
                     IconButton(
-                      icon: Image.asset('assets/images/black_bell.png',
-                          width: 42, height: 42),
+                      icon: const Icon(
+                        Icons.notifications,
+                        color: Colors.black,
+                      ),
+                      // Image.asset('assets/images/black_bell.png',
+                      //     width: 42, height: 42),
                       onPressed: () {
                         // Add your action here
                       },
@@ -885,22 +889,19 @@ class _MainHomeState extends State<MainHome> {
                                   index; // Adjust the day number
                               return GestureDetector(
                                 onTap: () {
-                                 print(dayNumber);
+                                  print(dayNumber);
 
-                                  if (_days < dataList.length  ) {
-                                     setState(() {
-                                    _days = dayNumber == dataList.length ? dataList.length -1 : dayNumber;
-                                    _showDetails = false;
-                                    _showDetails2 = false;
-                                    _showDetails3 = false;
-                                    _showDetails4 =
-                                        false; 
-                                  });
-                                  } 
-
-                             
-
-                                 
+                                  if (_days < dataList.length) {
+                                    setState(() {
+                                      _days = dayNumber == dataList.length
+                                          ? dataList.length - 1
+                                          : dayNumber;
+                                      _showDetails = false;
+                                      _showDetails2 = false;
+                                      _showDetails3 = false;
+                                      _showDetails4 = false;
+                                    });
+                                  }
                                 },
                                 child: Column(
                                   children: [
