@@ -100,10 +100,9 @@ class ApiService {
     if (response.statusCode == 401) {
       await refreshToken();
       return fetchDataPlan(path, getData);
-    }
-    // else if (response.statusCode == 404) {
-    // }
-    else if (response.statusCode == 200) {
+    } else if (response.statusCode == 404) {
+      return response.data;
+    } else if (response.statusCode == 200) {
       return response.data;
     } else {
       await Future.delayed(const Duration(seconds: 60));

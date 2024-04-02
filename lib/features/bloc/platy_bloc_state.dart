@@ -139,3 +139,11 @@ class MealPlanDataState extends PlatyBlocState {
 
   List<dynamic> get props => [successMessage];
 }
+
+class MealPlanErrorState extends PlatyBlocState {
+  final dynamic errorMessage;
+
+  MealPlanErrorState(this.errorMessage);
+
+  List<dynamic> get props => [errorMessage];
+}
