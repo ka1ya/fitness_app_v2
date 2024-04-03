@@ -21,9 +21,14 @@ class _ProfileBonesCheckUpWidgetState extends State<ProfileBonesCheckUpWidget> {
     'Alkaline phosphatase',
   ];
   Map<String, dynamic> _selectedOptions = {};
+  Map<String, dynamic> result = {
+    "alkaline_phosphatase": "",
+    "vitamine_d": "",
+    "calcium": "",
+    "phosphorus": ""
+  };
   void isActive() {
-    if (_selectedOptions.length == titles.length) {
-      //bone_check_up
+    if (_selectedOptions.isNotEmpty) {
       _isButtonActive = true;
     } else {
       _isButtonActive = false;
@@ -246,9 +251,16 @@ class _ProfileBonesCheckUpWidgetState extends State<ProfileBonesCheckUpWidget> {
                   child: ElevatedButton(
                     onPressed: _isButtonActive
                         ? () {
+                            result["alkaline_phosphatase"] =
+                                _selectedOptions['Alkaline phosphatase'];
+                            result["vitamine_d"] =
+                                _selectedOptions['Vitamin D'];
+                            result["calcium"] = _selectedOptions['Calcium'];
+                            result["phosphorus"] =
+                                _selectedOptions['Phosphorus'];
                             BlocProvider.of<PlatyBloc>(context).add(
                                 UpdateProfilePatchEvent(
-                                    {'bone_check_up': _selectedOptions}));
+                                    {'bone_check_up': result}));
                           }
                         : null,
                     style: ElevatedButton.styleFrom(

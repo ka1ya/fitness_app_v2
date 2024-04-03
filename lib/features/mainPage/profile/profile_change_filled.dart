@@ -88,6 +88,51 @@ class _ProfileChangeFilledPageState extends State<ProfileChangeFilledPage> {
   Map<String, dynamic> jsonData = {};
   List<dynamic> subtitleList = List.generate(22, (index) => null);
 
+  String makeSubTitleBones(Map<String, dynamic> value) {
+    Map<String, String> correctMap = {
+      'vitamin_d': 'Vitamin D',
+      'calcium': 'Calcium',
+      'phosphorus': 'Phosphorus',
+      'alkaline_phosphatase': 'Alkaline phosphatase'
+    };
+
+    List<String> results = [];
+
+    value.forEach((key, value) {
+      String? correctKey = correctMap[key];
+      if (correctKey != null && value.isNotEmpty) {
+        results.add('$correctKey ($value)');
+      }
+    });
+
+    return results.join(', ');
+  }
+
+  String makeSubTitleDigestive(Map<String, dynamic> value) {
+    Map<String, String> correctMap = {
+      "acid_reflux": "Acid reflux",
+      "gas": "Gas",
+      "irregular_bowel_movements": "Irregular bowel movements",
+      "diarrhoea": "Diarrhea",
+      "bloating": "Bloating",
+      "indigestion": "Indigestion",
+      "abdominal_pain_and_cramps": "Abdominal pain and cramps",
+      "flatulence": "Flatulence",
+      "nausea": "Nausea"
+    };
+
+    List<String> results = [];
+
+    value.forEach((key, value) {
+      String? correctKey = correctMap[key];
+      if (correctKey != null && value.isNotEmpty) {
+        results.add('$correctKey ($value)');
+      }
+    });
+    print(results);
+    return results.join(', ');
+  }
+
   String makeSubTitle(dynamic value) {
     if (value == null) {
       return 'Nothing yet...';
@@ -98,7 +143,8 @@ class _ProfileChangeFilledPageState extends State<ProfileChangeFilledPage> {
         return 'Nothing yet...';
       } else {
         return value.entries
-            .map((entry) => '${entry.key} (${entry.value})')
+            .map((entry) =>
+                '${entry.key[0].toUpperCase() + entry.key.substring(1)} (${entry.value})')
             .join(', ');
       }
     } else if (value is int) {
@@ -141,7 +187,6 @@ class _ProfileChangeFilledPageState extends State<ProfileChangeFilledPage> {
             color: Colors.black,
           ),
         ),
-      
         backgroundColor: const Color.fromARGB(255, 240, 242, 236),
         elevation: 0.0,
         scrolledUnderElevation: 0,
@@ -164,8 +209,8 @@ class _ProfileChangeFilledPageState extends State<ProfileChangeFilledPage> {
                 jsonData['cooking_preferences'],
                 jsonData['sport_nutritions'],
                 jsonData['blood_check_up'],
-                jsonData['bone_check_up'],
-                jsonData['digestive_health'],
+                makeSubTitleBones(jsonData['bone_check_up']),
+                makeSubTitleDigestive(jsonData['digestive_health']),
                 jsonData['emotional_wellbeing'],
                 jsonData['current_goals'],
                 jsonData['habits'],

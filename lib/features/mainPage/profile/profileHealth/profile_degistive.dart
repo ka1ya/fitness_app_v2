@@ -17,7 +17,6 @@ class _ProfileDigestiveWidgetState extends State<ProfileDigestiveWidget> {
     'Acid reflux',
     'Gas',
     'Irregular bowel movements',
-    'Constipation',
     'Diarrhea',
     'Bloating',
     'Indigestion',
@@ -26,9 +25,9 @@ class _ProfileDigestiveWidgetState extends State<ProfileDigestiveWidget> {
     'Nausea',
   ];
   Map<String, dynamic> _selectedOptions = {};
+  Map<String, dynamic> result = {};
   void isActive() {
     if (_selectedOptions.isNotEmpty) {
-      //bone_check_up
       _isButtonActive = true;
     } else {
       _isButtonActive = false;
@@ -222,9 +221,48 @@ class _ProfileDigestiveWidgetState extends State<ProfileDigestiveWidget> {
                   child: ElevatedButton(
                     onPressed: _isButtonActive
                         ? () {
+                            result = {
+                              "acid_reflux":
+                                  _selectedOptions.containsKey("Acid reflux")
+                                      ? _selectedOptions["Acid reflux"]
+                                      : null,
+                              "gas": _selectedOptions.containsKey("Gas")
+                                  ? _selectedOptions["Gas"]
+                                  : null,
+                              "irregular_bowel_movements": _selectedOptions
+                                      .containsKey("Irregular bowel movements")
+                                  ? _selectedOptions[
+                                      "Irregular bowel movements"]
+                                  : null,
+                              "diarrhoea":
+                                  _selectedOptions.containsKey("Diarrhea")
+                                      ? _selectedOptions["Diarrhea"]
+                                      : null,
+                              "bloating":
+                                  _selectedOptions.containsKey("Bloating")
+                                      ? _selectedOptions["Bloating"]
+                                      : null,
+                              "indigestion":
+                                  _selectedOptions.containsKey("Indigestion")
+                                      ? _selectedOptions["Indigestion"]
+                                      : null,
+                              "abdominal_pain_and_cramps": _selectedOptions
+                                      .containsKey("Abdominal pain and cramps")
+                                  ? _selectedOptions[
+                                      "Abdominal pain and cramps"]
+                                  : null,
+                              "flatulence":
+                                  _selectedOptions.containsKey("Flatulence")
+                                      ? _selectedOptions["Flatulence"]
+                                      : null,
+                              "nausea": _selectedOptions.containsKey("Nausea")
+                                  ? _selectedOptions["Nausea"]
+                                  : null
+                            };
+
                             BlocProvider.of<PlatyBloc>(context).add(
                                 UpdateProfilePatchEvent(
-                                    {'digestive_health': _selectedOptions}));
+                                    {'digestive_health': result}));
                           }
                         : null,
                     style: ElevatedButton.styleFrom(
