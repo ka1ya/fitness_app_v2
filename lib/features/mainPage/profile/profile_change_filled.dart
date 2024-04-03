@@ -204,13 +204,19 @@ class _ProfileChangeFilledPageState extends State<ProfileChangeFilledPage> {
                 jsonData['activities_frequency'],
                 jsonData['mental_health_goals'],
                 jsonData['beauty_goals'],
-                "${jsonData['tpd_count']} (${jsonData['tpds'].first})",
+                jsonData['tpds'] != null
+                    ? "${jsonData['tpd_count']} (${jsonData['tpds'].first})"
+                    : "${jsonData['tpd_count']}",
                 jsonData['current_diet'],
                 jsonData['cooking_preferences'],
                 jsonData['sport_nutritions'],
                 jsonData['blood_check_up'],
-                makeSubTitleBones(jsonData['bone_check_up']),
-                makeSubTitleDigestive(jsonData['digestive_health']),
+                jsonData['bone_check_up'] != null
+                    ? makeSubTitleBones(jsonData['bone_check_up'])
+                    : 'Nothing yet...',
+                jsonData['digestive_health'] != null
+                    ? makeSubTitleDigestive(jsonData['digestive_health'])
+                    : 'Nothing yet...',
                 jsonData['emotional_wellbeing'],
                 jsonData['current_goals'],
                 jsonData['habits'],
