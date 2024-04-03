@@ -19,9 +19,9 @@ class _ProfileHormoneWidgetState extends State<ProfileHormoneWidget> {
     'Testosterone',
   ];
   Map<String, dynamic> _selectedOptions = {};
+  Map<String, dynamic> result = {};
   void isActive() {
-    if (_selectedOptions.length == titles.length) {
-      //bone_check_up
+    if (_selectedOptions.isNotEmpty) {
       _isButtonActive = true;
     } else {
       _isButtonActive = false;
@@ -250,9 +250,13 @@ class _ProfileHormoneWidgetState extends State<ProfileHormoneWidget> {
                   child: ElevatedButton(
                     onPressed: _isButtonActive
                         ? () {
+                            _selectedOptions.forEach((key, value) {
+                              result[key.toLowerCase()] = value;
+                            });
+                            print({'blood_check_up': result});
                             BlocProvider.of<PlatyBloc>(context).add(
                                 UpdateProfilePatchEvent(
-                                    {'blood_check_up': _selectedOptions}));
+                                    {'blood_check_up': result}));
                           }
                         : null,
                     style: ElevatedButton.styleFrom(

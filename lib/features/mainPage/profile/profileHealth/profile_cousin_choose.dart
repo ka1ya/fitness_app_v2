@@ -135,7 +135,7 @@ class _ProfileCousinListWidgetState extends State<ProfileCousinListWidget> {
                       ? () {
                           BlocProvider.of<PlatyBloc>(context).add(
                               UpdateProfilePatchEvent(
-                                  {'outside_eating_cuisine': choosedTitles}));
+                                  {'delivery_cuisine': choosedTitles}));
                         }
                       : null,
                   style: ElevatedButton.styleFrom(

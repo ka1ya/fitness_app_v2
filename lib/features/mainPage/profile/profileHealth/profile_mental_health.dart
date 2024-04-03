@@ -132,8 +132,10 @@ class _ProfileMentalHealthWidgetState extends State<ProfileMentalHealthWidget> {
                 child: ElevatedButton(
                   onPressed: _isButtonActive
                       ? () {
+                          print(updateProfileData);
                           BlocProvider.of<PlatyBloc>(context)
                               .add(UpdateProfilePatchEvent(updateProfileData));
+                          Navigator.of(context).pop();
                         }
                       : null,
                   style: ElevatedButton.styleFrom(
