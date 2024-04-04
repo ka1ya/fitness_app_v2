@@ -106,7 +106,7 @@ class ApiService {
     } else if (response.statusCode == 200) {
       return response.data;
     } else {
-      await Future.delayed(const Duration(seconds: 10));
+      await Future.delayed(Duration(seconds: counter == 0 ? 30 : 10));
       counter++;
       print('counter = $counter');
       if (counter == 21) {
