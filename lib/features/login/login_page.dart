@@ -6,6 +6,7 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:platy/features/bloc/platy_bloc_bloc.dart';
 import 'package:platy/features/calculation/calculation_global.dart';
 import 'package:platy/features/mainPage/main_home_page.dart';
+import 'package:platy/features/signUp/signUp_confirm_page.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class LoginPage extends StatefulWidget {
@@ -109,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const CalculateGlobalWidget()));
+                      builder: (context) => const SignUpConfirmPage()));
             } else if (state is ProfileIncludesDataState) {
               Navigator.pushReplacement(
                   context,
