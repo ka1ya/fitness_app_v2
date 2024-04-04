@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:platy/features/bloc/platy_bloc_bloc.dart';
 import 'package:platy/features/login/login_page.dart';
+import 'package:platy/features/mainPage/main_home_page.dart';
 import 'package:platy/features/signUp/signUp_confirm_page.dart';
 import 'package:platy/features/signUp/signUp_congratulation_page.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -154,13 +155,21 @@ class _SignUpPageState extends State<SignUpPage> {
             }
             ;
             if (state is SignUpSuccessState) {
+              platyBloc.add(ProfileDataEvent({}));
+            
+            }
+            ;
+            if (state is ProfileNotIncludesDataState) {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const SignUpConfirmPage()));
+            } else if (state is ProfileIncludesDataState) {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          const SignUpConfirmPage()));
+                      builder: (BuildContext context) => const MainHomePage()));
             }
-            ;
           },
           child: KeyboardDismissOnTap(
             child: CustomScrollView(
