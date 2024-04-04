@@ -106,10 +106,10 @@ class ApiService {
     } else if (response.statusCode == 200) {
       return response.data;
     } else {
-      await Future.delayed(const Duration(seconds: 30));
+      await Future.delayed(const Duration(seconds: 10));
       counter++;
       print('counter = $counter');
-      if (counter == 7) {
+      if (counter == 21) {
         return {'Error': 'Error during mealplan creation'};
       } else {
         return fetchDataPlan(path, getData);

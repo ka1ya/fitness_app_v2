@@ -246,7 +246,7 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
       ),
     ];
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 240, 242, 236),
+      backgroundColor: const Color.fromARGB(255, 240, 242, 236),
       appBar: AppBar(
         leadingWidth: 70,
         toolbarHeight: 100,
@@ -293,7 +293,7 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
           backgroundColor: const Color.fromRGBO(23, 23, 23, 0.25),
         ),
         surfaceTintColor: Colors.transparent,
-        backgroundColor: Color.fromARGB(255, 240, 242, 236),
+        backgroundColor: const Color.fromARGB(255, 240, 242, 236),
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 40),
@@ -314,7 +314,7 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
               width: 180,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25.0),
-                color: _isButtonActive ? Color(0xFFA4AC9C) : Color(0xFFCDC9C4),
+                color: _isButtonActive ? const Color(0xFFA4AC9C) : const Color(0xFFCDC9C4),
               ),
               child: ElevatedButton(
                 onPressed: _isButtonActive
@@ -325,6 +325,7 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
 
                           platyBloc.add(CreateProfileEvent(userModel.toJson()));
 
+                          Future.delayed(const Duration(seconds: 1), () {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
@@ -332,6 +333,7 @@ class _CalculateGlobalWidgetState extends State<CalculateGlobalWidget> {
                                       MealGenerationPage(
                                         userModel: userModel,
                                       )));
+                          });
                         } else {
                           setState(() {
                             checkIfHabbit(lisWidgets);
