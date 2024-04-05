@@ -108,7 +108,7 @@ class _ProfileFifthTPDWidgetState extends State<ProfileFifthTPDWidget> {
                           setState(() {
                             _selectedIndex = isChecked ? index : null;
                             _isButtonActive = true;
-                            updateProfileData['tpds'] = titles[index];
+                            updateProfileData['tpds'] = [titles[index]];
                           });
                         },
                       );

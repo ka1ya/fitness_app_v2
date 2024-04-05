@@ -113,7 +113,7 @@ class _ProfileFirstTPDWidgetState extends State<ProfileFirstTPDWidget> {
                           setState(() {
                             _selectedIndex = isChecked ? index : null;
                             _isButtonActive = true;
-                            updateProfileData['tpds'] = titles[index];
+                            updateProfileData['tpds'] = [titles[index]];
                           });
                         },
                       );

@@ -156,7 +156,6 @@ class _SignUpPageState extends State<SignUpPage> {
             ;
             if (state is SignUpSuccessState) {
               platyBloc.add(ProfileDataEvent({}));
-            
             }
             ;
             if (state is ProfileNotIncludesDataState) {
@@ -165,10 +164,12 @@ class _SignUpPageState extends State<SignUpPage> {
                   MaterialPageRoute(
                       builder: (context) => const SignUpConfirmPage()));
             } else if (state is ProfileIncludesDataState) {
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => const MainHomePage()));
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => const MainHomePage()),
+                (route) => false,
+              );
             }
           },
           child: KeyboardDismissOnTap(

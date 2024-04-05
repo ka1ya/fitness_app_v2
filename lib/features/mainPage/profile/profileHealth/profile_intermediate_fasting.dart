@@ -119,7 +119,7 @@ class _ProfileIntermediateFastingWidgetState
                             if (isChecked) {
                               _selectedIndex = index;
                               _isButtonActive = true;
-                              updateProfileData['tpds'] = titles[index];
+                              updateProfileData['tpds'] = [titles[index]];
                             } else {
                               _selectedIndex = null;
                               _isButtonActive = false;

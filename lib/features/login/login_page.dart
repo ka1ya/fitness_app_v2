@@ -112,10 +112,12 @@ class _LoginPageState extends State<LoginPage> {
                   MaterialPageRoute(
                       builder: (context) => const SignUpConfirmPage()));
             } else if (state is ProfileIncludesDataState) {
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => const MainHomePage()));
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => const MainHomePage()),
+                (route) => false,
+              );
             }
           },
           child: KeyboardDismissOnTap(

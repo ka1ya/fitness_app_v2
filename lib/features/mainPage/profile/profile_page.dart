@@ -59,7 +59,8 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<PlatyBloc>(context).add(ProfileDataEvent({}));
+    PlatyBloc platyBloc = BlocProvider.of<PlatyBloc>(context);
+    platyBloc.add(ProfileDataEvent({}));
     _loadCredentials();
     //profileData;
   }

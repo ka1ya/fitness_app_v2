@@ -109,7 +109,7 @@ class _ProfileThirdTPDWidgetState extends State<ProfileThirdTPDWidget> {
                         onTilePressed: (isChecked) {
                           setState(() {
                             _selectedIndex = isChecked ? index : null;
-                            updateProfileData['tpds'] = titles[index];
+                            updateProfileData['tpds'] = [titles[index]];
                             _isButtonActive = true;
                           });
                         },

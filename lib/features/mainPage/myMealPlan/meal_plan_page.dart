@@ -444,12 +444,12 @@ class _MealPlanPageState extends State<MealPlanPage> {
       body: BlocBuilder<PlatyBloc, PlatyBlocState>(
         builder: (context, state) {
           if (state is MealPlanDataState) {
-             print(state.successMessage);
-          dataList = state.successMessage;
-          
-          //List<Map<String, dynamic>> dataFromJson = state.successMessage;
-          //print('Data: $dataFromJson');
-         // dataList = dataFromJson;
+            print(state.successMessage);
+            dataList = state.successMessage;
+
+            //List<Map<String, dynamic>> dataFromJson = state.successMessage;
+            //print('Data: $dataFromJson');
+            // dataList = dataFromJson;
           }
           return Stack(children: [
             Positioned.fill(
@@ -482,8 +482,10 @@ class _MealPlanPageState extends State<MealPlanPage> {
                       width: 32, height: 32),
                   actions: [
                     IconButton(
-                      icon: Image.asset('assets/images/black_bell.png',
-                          width: 42, height: 42),
+                      icon: const Icon(
+                        Icons.notifications,
+                        color: Colors.black,
+                      ),
                       onPressed: () {
                         // Add your action here
                       },
@@ -635,16 +637,17 @@ class _MealPlanPageState extends State<MealPlanPage> {
                                   index; // Adjust the day number
                               return GestureDetector(
                                 onTap: () {
-                                 if (_days < dataList.length) {
-                                     setState(() {
-                                    _days = dayNumber == dataList.length ? dataList.length -1 : dayNumber;
-                                    _showDetails = false;
-                                    _showDetails2 = false;
-                                    _showDetails3 = false;
-                                    _showDetails4 =
-                                        false; 
-                                  });
-                                  } 
+                                  if (_days < dataList.length) {
+                                    setState(() {
+                                      _days = dayNumber == dataList.length
+                                          ? dataList.length - 1
+                                          : dayNumber;
+                                      _showDetails = false;
+                                      _showDetails2 = false;
+                                      _showDetails3 = false;
+                                      _showDetails4 = false;
+                                    });
+                                  }
                                 },
                                 child: Column(
                                   children: [

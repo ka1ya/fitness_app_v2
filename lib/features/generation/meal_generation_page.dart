@@ -121,10 +121,12 @@ class _MealGenerationPageState extends State<MealGenerationPage> {
                             : false,
                         child: GestureDetector(
                           onTap: () {
-                            Navigator.of(context).pushReplacement(
+                            Navigator.pushAndRemoveUntil(
+                              context,
                               MaterialPageRoute(
-                                builder: (context) => const MainHomePage(),
-                              ),
+                                  builder: (BuildContext context) =>
+                                      const MainHomePage()),
+                              (route) => false,
                             );
                           },
                           child: Container(
